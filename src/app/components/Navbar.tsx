@@ -13,7 +13,7 @@ const navLinks = [
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-center md:justify-around container p-6 ">
-      <div className="flex items-center ">
+      <div className="flex items-center justify-center ">
         <Image
           src={Logo}
           width={100}

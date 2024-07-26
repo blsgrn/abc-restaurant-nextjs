@@ -1,68 +1,83 @@
-import { FaLongArrowAltRight } from "react-icons/fa";
-import RightArrow from "../../../public/icons/arrow-right.svg";
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import Gradient from "../../../public/purple-gradient.svg";
-import HeroImage from "../../../public/HeroImage-ai.svg";
-import Google from "../../../public/icons/google.svg";
-import Slack from "../../../public/icons/slack.svg";
-import Trust from "../../../public/icons/truck.svg";
-import Cnn from "../../../public/icons/twitter-x.svg";
-import Cluth from "../../../public/icons/suit-club-fill.svg";
 
 const Hero = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subscribe, setSubscribe] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email.length < 1 || name.length < 1) {
+      alert("Please provide the required information!");
+    } else {
+      alert("Thank you for registering!");
+
+      setName("");
+      setEmail("");
+      setSubscribe(false);
+    }
+  };
+
   return (
-    <div className="pt-4">
-      <div className="px-[20px]">
-        <h1 className="text-center text-3xl leading-10 font-medium text-blue-900">
-          Order you best Cuisine in Our Restaurant Chain
+    <section className="pt-12 px-6 container h-[860px] flex sm:flex-col justify-evenly bg-[url('https://images.pexels.com/photos/5041491/pexels-photo-5041491.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover ">
+      <div className="basis-1/2 px-16">
+        <h1 className="text-6xl text-white px-16 pt-16 pb-4 font-bold">
+          Lorem ipsum dolor sit amet <br />
+          <span className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-slate-200 to-orange-400">
+            consectetur adipisicing
+          </span>
         </h1>
-        <p className="text-center pt-6 from-neutral-600">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil ullam
-          placeat odit quam fugit quod doloribus accusamus tenetur, laudantium
-          enim quasi vitae ut tempora fugiat sunt dolore natus soluta. Itaque!
+        <p className="text-white text-lg px-16">
+          elit. Est dicta a ullam facilis sequi distinctio rem suscipit
+          asperiores vitae quae!
         </p>
-        <div className="flex w-full pt-8">
-          <button className="w-1/2 lg:w-fit py-4 px-8 text-white rounded-md bg-sky-300 hover:bg-slate-300">
-            Try for free
-          </button>
-          <button className="flex items-center justify-center gap-x-2 w-1/2 text-blue-800">
-            View Pricing
-            <span>
-              <Image src={RightArrow} alt="Learn more" />
-            </span>
-          </button>
-        </div>
       </div>
-
-      <div className="relative flex h-full w-full justify-center">
-        <Image
-          src={Gradient}
-          alt="Gradient"
-          className="min-h-[500px] w-full object-cover lg:h-auto xl:w-[70%]"
-        />
-        <div className="absolute flex w-full flex-col items-center top-5">
-          <Image src={HeroImage} alt="Hero image" />
-          <div className="flex w-full flex-col items-center lg:container lg:flex-row lg:justify-between">
-            <p className="text-white text-center font-bold">
-              Trusted by these companies
-            </p>
-            <div className="grid grid-cols-3 items-center justify-evenly justify-items-center align-middle">
-              <Image
-                src={Google}
-                alt="Image description"
-                width={100}
-                height={100}
+      <div className="basis-1/2 mx-auto flex ">
+        <div className="border rounded-lg shadow-zinc-900 border-gray-400 h-4/6 w-3/5 mt-12 justify-center text-center items-center bg-white">
+          <h2 className="font-bold text-2xl pt-8">Register Now</h2>
+          <p className="text-gray-600 text-2xl pt-2">
+            Take your life seriously!
+          </p>
+          <div className="flex flex-col gap-5 w-3/4 items-center mx-auto pt-6">
+            <form onSubmit={handleSubmit} className="flex flex-col">
+              <input
+                type="text"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="border rounded-md p-3 mb-6"
               />
-
-              <Image src={Slack} alt="" width={100} height={100} />
-              <Image src={Trust} alt="" width={100} height={100} />
-              <Image src={Cnn} alt="" width={100} height={100} />
-              <Image src={Cluth} alt="" width={100} height={100} />
-            </div>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="border rounded-md p-3 mb-6"
+              />
+              <div className="form-control mb-6">
+                <label className="label cursor-pointer">
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-primary"
+                    checked={subscribe}
+                    onChange={(e) => setSubscribe(e.target.checked)}
+                  />
+                  <span className="label-text ml-2">
+                    Subscribe to our newsletter for promotions and updates
+                  </span>
+                </label>
+              </div>
+              <button type="submit" className="btn btn-secondary">
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
