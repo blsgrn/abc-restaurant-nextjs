@@ -12,7 +12,7 @@ const navLinks = [
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-center md:justify-around container p-6 ">
+    <nav className="flex items-center justify-center md:justify-around container p-6 md:pb-0">
       <div className="flex items-center justify-center ">
         <Image
           src={Logo}
@@ -20,7 +20,7 @@ const Navbar = () => {
           height={100}
           color={"#8eede7"}
           alt="Logo"
-          className="bg-violet-900 flex p-2"
+          className="bg-violet-900 flex p-2 pb-0"
         />
         <div className="navbar-center bg-accent p-6 mx-6 rounded-md flex gap-x-24 2xl:gap-x-12 lg:gap-x-4 md:hidden">
           {navLinks.map((item, index) => (
