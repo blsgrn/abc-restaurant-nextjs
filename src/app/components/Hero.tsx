@@ -76,14 +76,14 @@ const Hero = () => {
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="border border-orange-400 rounded-md p-3 mb-6 w-full"
+                className="border border-orange-200 rounded-md p-3 mb-6 w-full"
               />
               <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border border-orange-400 rounded-md p-3 mb-6 w-full"
+                className="border border-orange-200 rounded-md p-3 mb-6 w-full"
               />
               <div className="form-control mb-6">
                 <label className="label cursor-pointer">
@@ -93,7 +93,7 @@ const Hero = () => {
                     checked={subscribe}
                     onChange={(e) => setSubscribe(e.target.checked)}
                   />
-                  <span className="label-text ml-2">
+                  <span className="label-text ml-2 text-left">
                     Subscribe to our newsletter for promotions and updates
                   </span>
                 </label>
