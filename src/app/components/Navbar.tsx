@@ -1,19 +1,20 @@
 import Image from "next/image";
+import Link from "next/link";
 import Logo from "../../../public/logo.svg";
 import { FaRegUser } from "react-icons/fa";
 import { CiTextAlignJustify } from "react-icons/ci";
 
 const navLinks = [
-  { name: "Home" },
-  { name: "Menu" },
-  { name: "Services" },
-  { name: "About Us" },
+  { name: "Home", href: "/" },
+  { name: "Menu", href: "/menu" },
+  { name: "Services", href: "/services" },
+  { name: "About Us", href: "/about-us" },
 ];
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-center md:justify-around container p-6 md:pb-0">
-      <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center">
         <Image
           src={Logo}
           width={100}
@@ -24,19 +25,23 @@ const Navbar = () => {
         />
         <div className="navbar-center bg-accent p-6 mx-6 rounded-md flex gap-x-24 2xl:gap-x-12 lg:gap-x-4 md:hidden">
           {navLinks.map((item, index) => (
-            <p className="font-medium text-neutral-800" key={index}>
+            <Link
+              href={item.href}
+              key={index}
+              className="font-medium text-neutral-800"
+            >
               {item.name}
-            </p>
+            </Link>
           ))}
         </div>
       </div>
       <div className="navbar-end rounded-md flex gap-x-8 md:gap-x-4">
-        <div className="flex items-center gap-x-2">
+        <Link href="/sign-in" className="flex items-center gap-x-2">
           <FaRegUser color="#4d1d95" size={28} alt="User Profile" />
           <span className="font-medium text-neutral-600 sm:hidden">
             Sign in
           </span>
-        </div>
+        </Link>
 
         <CiTextAlignJustify
           size={40}
