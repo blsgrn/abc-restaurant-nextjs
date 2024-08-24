@@ -12,39 +12,37 @@ const SignIn = () => {
 
   return (
     <>
-      <Navbar className="min-h-screen" />;
+      <Navbar className="min-h-screen" />
       <div className="hero bg-base-200">
-        <div className="hero-content lg:flex-col ">
+        <div className="hero-content lg:flex-col">
           <div className="text-center lg:text-left">
-            <p className="py-6">
-              <div className="p-8 bg-gray-100 rounded-lg text-left text-primary-content">
-                <h2 className="text-3xl font-bold text-center mb-4">
-                  Unlock Exclusive Benefits!
-                </h2>
-                <ul className="list-disc list-inside space-y-2">
-                  <li>
-                    <strong>Exclusive Offers:</strong> Enjoy special discounts
-                    and promotions available only to registered members.
-                  </li>
-                  <li>
-                    <strong>Personalized Experience:</strong> Save your favorite
-                    dishes and get recommendations tailored just for you.
-                  </li>
-                  <li>
-                    <strong>Faster Checkout:</strong> Breeze through your orders
-                    with saved details and a streamlined checkout process.
-                  </li>
-                  <li>
-                    <strong>Event Invitations:</strong> Be the first to know
-                    about our upcoming events and secure your spot early.
-                  </li>
-                </ul>
-                <p className="mt-6 text-left">
-                  <strong>Join us today</strong> and let us take your dining
-                  experience to the next level. We can&apos;t wait to serve you!
-                </p>
-              </div>
-            </p>
+            <div className="p-8 bg-gray-100 rounded-lg text-left text-primary-content">
+              <h2 className="text-3xl font-bold text-center mb-4">
+                Unlock Exclusive Benefits!
+              </h2>
+              <ul className="list-disc list-inside space-y-2">
+                <li>
+                  <strong>Exclusive Offers:</strong> Enjoy special discounts and
+                  promotions available only to registered members.
+                </li>
+                <li>
+                  <strong>Personalized Experience:</strong> Save your favorite
+                  dishes and get recommendations tailored just for you.
+                </li>
+                <li>
+                  <strong>Faster Checkout:</strong> Breeze through your orders
+                  with saved details and a streamlined checkout process.
+                </li>
+                <li>
+                  <strong>Event Invitations:</strong> Be the first to know about
+                  our upcoming events and secure your spot early.
+                </li>
+              </ul>
+              <p className="mt-6 text-left">
+                <strong>Join us today</strong> and let us take your dining
+                experience to the next level. We can&apos;t wait to serve you!
+              </p>
+            </div>
           </div>
           <div>
             <h1 className="text-2xl text-neutral-600 font-bold text-center p-2">
@@ -112,7 +110,7 @@ const SignIn = () => {
                     window.location.href = "/sign-up";
                   }}
                 >
-                  <p>Sign up</p>
+                  Sign up
                 </button>
               </form>
             </div>
