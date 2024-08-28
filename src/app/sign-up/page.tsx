@@ -93,11 +93,12 @@ const SignUp = () => {
         alert("Registration successful!");
         router.push("/sign-in");
       } else {
-        alert("Failed to register. Please try again.");
+        const errorMessage = await response.text();
+        setError(errorMessage);
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      alert("An error occurred. Please try again later.");
+      setError("An error occurred. Please try again later.");
     }
   };
 

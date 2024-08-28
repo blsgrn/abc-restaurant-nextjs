@@ -1,13 +1,78 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
 
 const SignIn = () => {
-  const handleSubmit = (e) => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    role: "Customer",
+  });
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const validateForm = () => {
+    const { username, password } = formData;
+
+    if (!username || !password) {
+      alert("Please fill out all required fields.");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted");
+
+    if (!validateForm()) return;
+
+    setError("");
+
+    try {
+      // Construct the URL without query parameters
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const data = await response.json(); // Assuming the backend returns the token in JSON
+        const token = data.token; // Adjust based on your backend response
+
+        // Store the token in localStorage
+        localStorage.setItem("token", token);
+
+        // Redirect to the user dashboard
+        alert("Login successful!");
+        router.push("/dashboard");
+      } else {
+        const errorData = await response.json(); // Handle JSON error responses
+        setError(errorData.message || "Invalid login credentials.");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setError("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -52,11 +117,13 @@ const SignIn = () => {
               <form onSubmit={handleSubmit} className="card-body">
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">Username</span>
                   </label>
                   <input
-                    type="email"
-                    placeholder="email"
+                    type="text"
+                    name="username"
+                    value={formData.username}
+                    onChange={handleChange}
                     className="input input-bordered"
                     required
                   />
@@ -67,7 +134,10 @@ const SignIn = () => {
                   </label>
                   <input
                     type="password"
+                    name="password"
                     placeholder="password"
+                    value={formData.password}
+                    onChange={handleChange}
                     className="input input-bordered"
                     required
                   />
@@ -82,9 +152,11 @@ const SignIn = () => {
                     <span className="label-text">Customer</span>
                     <input
                       type="radio"
-                      name="radio-10"
+                      name="role"
+                      value="Customer"
                       className="radio checked:bg-red-500"
                       defaultChecked
+                      onChange={handleChange}
                     />
                   </label>
                 </div>
@@ -93,8 +165,10 @@ const SignIn = () => {
                     <span className="label-text">Staff</span>
                     <input
                       type="radio"
-                      name="radio-10"
+                      name="role"
+                      value="Staff"
                       className="radio checked:bg-blue-500"
+                      onChange={handleChange}
                     />
                   </label>
                 </div>
@@ -113,6 +187,9 @@ const SignIn = () => {
                   Sign up
                 </button>
               </form>
+              {error && (
+                <p className="text-red-500 text-sm text-center mt-4">{error}</p>
+              )}
             </div>
           </div>
         </div>
