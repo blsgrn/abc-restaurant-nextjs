@@ -56,13 +56,34 @@ const SignIn = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const token = data.token;
+        const { token, role, name } = data;
 
         localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("name", name);
 
-        // Create an conditional redirection, if customer to customer/dashboard, staff to staff/dashboard, admin to admin/dasboard based on response
-        alert("Login successful!");
-        router.push("/dashboard");
+        console.log(token);
+        console.log(role);
+        console.log(name);
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role); // Store the role in localStorage
+
+        // Redirect based on the user's role
+        switch (role) {
+          case "customer":
+            router.push("/customer");
+            break;
+          case "staff":
+            router.push("/staff");
+            break;
+          case "admin":
+            router.push("/admin");
+            break;
+          default:
+            router.push("/");
+            break;
+        }
       } else {
         const errorData = await response.json();
         setError(errorData.message || "Invalid login credentials.");
