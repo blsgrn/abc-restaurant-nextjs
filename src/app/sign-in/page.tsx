@@ -40,7 +40,6 @@ const SignIn = () => {
     setError("");
 
     try {
-      // Construct the URL without query parameters
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/login`,
         {
@@ -56,17 +55,16 @@ const SignIn = () => {
       );
 
       if (response.ok) {
-        const data = await response.json(); // Assuming the backend returns the token in JSON
-        const token = data.token; // Adjust based on your backend response
+        const data = await response.json();
+        const token = data.token;
 
-        // Store the token in localStorage
         localStorage.setItem("token", token);
 
-        // Redirect to the user dashboard
+        // Create an conditional redirection, if customer to customer/dashboard, staff to staff/dashboard, admin to admin/dasboard based on response
         alert("Login successful!");
         router.push("/dashboard");
       } else {
-        const errorData = await response.json(); // Handle JSON error responses
+        const errorData = await response.json();
         setError(errorData.message || "Invalid login credentials.");
       }
     } catch (error) {
