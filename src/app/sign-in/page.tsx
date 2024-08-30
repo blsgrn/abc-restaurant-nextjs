@@ -71,13 +71,13 @@ const SignIn = () => {
 
         // Redirect based on the user's role
         switch (role) {
-          case "customer":
+          case "Customer":
             router.push("/customer");
             break;
-          case "staff":
+          case "Staff":
             router.push("/staff");
             break;
-          case "admin":
+          case "Admin":
             router.push("/admin");
             break;
           default:

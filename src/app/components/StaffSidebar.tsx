@@ -1,28 +1,33 @@
-import Link from "next/link";
 import { FaHome, FaUser, FaCog } from "react-icons/fa";
 
-const StaffSidebar = () => {
+const StaffSidebar = ({ onMenuItemClick }) => {
   return (
     <div className="bg-gray-800 text-neutral-200 p-6 w-64 h-full">
       <h2 className="text-lg font-semibold mb-4">Staff Dashboard</h2>
       <ul>
-        <li className="mb-4">
-          <Link href="/staff/home" className="flex items-center gap-x-2">
+        <li className="mb-4" onClick={() => onMenuItemClick("home")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
             <FaHome size={20} />
             <span>Home</span>
-          </Link>
+          </div>
         </li>
-        <li className="mb-4">
-          <Link href="/staff/profile" className="flex items-center gap-x-2">
+        <li className="mb-4" onClick={() => onMenuItemClick("profile")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
             <FaUser size={20} />
             <span>Profile</span>
-          </Link>
+          </div>
         </li>
-        <li>
-          <Link href="/staff/settings" className="flex items-center gap-x-2">
+        <li className="mb-4" onClick={() => onMenuItemClick("menu-management")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaUser size={20} />
+            <span>Menu Management</span>
+          </div>
+        </li>
+        <li onClick={() => onMenuItemClick("settings")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
             <FaCog size={20} />
             <span>Settings</span>
-          </Link>
+          </div>
         </li>
       </ul>
     </div>

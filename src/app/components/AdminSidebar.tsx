@@ -1,28 +1,33 @@
-import Link from "next/link";
-import { FaHome, FaUserShield, FaChartBar } from "react-icons/fa";
+import { FaHome, FaUser, FaCog } from "react-icons/fa";
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ onMenuItemClick }) => {
   return (
     <div className="bg-gray-800 text-neutral-200 p-6 w-64 h-full">
       <h2 className="text-lg font-semibold mb-4">Admin Dashboard</h2>
       <ul>
-        <li className="mb-4">
-          <Link href="/admin/home" className="flex items-center gap-x-2">
+        <li className="mb-4" onClick={() => onMenuItemClick("home")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
             <FaHome size={20} />
             <span>Home</span>
-          </Link>
+          </div>
         </li>
-        <li className="mb-4">
-          <Link href="/admin/users" className="flex items-center gap-x-2">
-            <FaUserShield size={20} />
-            <span>Users</span>
-          </Link>
+        <li className="mb-4" onClick={() => onMenuItemClick("profile")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaUser size={20} />
+            <span>Profile</span>
+          </div>
         </li>
-        <li>
-          <Link href="/admin/reports" className="flex items-center gap-x-2">
-            <FaChartBar size={20} />
-            <span>Reports</span>
-          </Link>
+        <li className="mb-4" onClick={() => onMenuItemClick("menu-management")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaUser size={20} />
+            <span>Menu Management</span>
+          </div>
+        </li>
+        <li onClick={() => onMenuItemClick("settings")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Settings</span>
+          </div>
         </li>
       </ul>
     </div>

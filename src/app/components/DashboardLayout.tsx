@@ -6,18 +6,23 @@ import CustomerSidebar from "./CustomerSidebar";
 import AdminSidebar from "./AdminSidebar";
 import { usePathname } from "next/navigation";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({
+  children,
+  onMenuItemClick,
+}: {
+  children: React.ReactNode;
+}) => {
   const pathname = usePathname(); // Get the current path
   const role = pathname.split("/")[1]; // Extract role from the URL
 
   const renderSidebar = () => {
     switch (role) {
       case "staff":
-        return <StaffSidebar />;
+        return <StaffSidebar onMenuItemClick={onMenuItemClick} />;
       case "customer":
-        return <CustomerSidebar />;
+        return <CustomerSidebar onMenuItemClick={onMenuItemClick} />;
       case "admin":
-        return <AdminSidebar />;
+        return <AdminSidebar onMenuItemClick={onMenuItemClick} />;
       default:
         return null; // Handle cases where the role is not recognized
     }
