@@ -1,8 +1,10 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Logo from "../../../public/logo.svg";
 import { FaRegUser } from "react-icons/fa";
-import { CiTextAlignJustify } from "react-icons/ci";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -12,6 +14,39 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const router = useRouter();
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("name");
+    const storedRole = localStorage.getItem("role");
+    if (storedName && storedRole) {
+      setName(storedName);
+      setRole(storedRole);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("name");
+    router.push("/");
+  };
+
+  const getDashboardLink = () => {
+    switch (role.toLowerCase()) {
+      case "customer":
+        return "/customer";
+      case "staff":
+        return "/staff";
+      case "admin":
+        return "/admin";
+      default:
+        return "/";
+    }
+  };
+
   return (
     <nav className="flex items-center justify-center md:justify-around container p-6 md:pb-0">
       <div className="flex items-center justify-center">
@@ -35,20 +70,27 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="navbar-end rounded-md flex gap-x-8 md:gap-x-4">
-        <Link href="/sign-in" className="flex items-center gap-x-2">
-          <FaRegUser color="#4d1d95" size={28} alt="User Profile" />
-          <span className="font-medium text-neutral-600 sm:hidden">
-            Sign in
-          </span>
-        </Link>
-
-        <CiTextAlignJustify
-          size={40}
-          color="#4d1d95"
-          alt="User Profile"
-          className="hidden md:block"
-        />
+      <div className="navbar-end rounded-md flex items-center gap-x-8 md:gap-x-4">
+        {name ? (
+          <>
+            <div className="flex items-center space-x-4 bg-neutral p-2 rounded-lg shadow-sm">
+              <Link href={getDashboardLink()}>
+                <span className="font-bold text-success">Welcome, {name}!</span>
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="font-medium text-sm text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded"
+              >
+                Logout
+              </button>
+            </div>
+          </>
+        ) : (
+          <Link href="/sign-in" className="flex items-center gap-x-2">
+            <FaRegUser color="#4d1d95" size={28} alt="User Profile" />
+            <span className="font-medium text-neutral-600">Sign in</span>
+          </Link>
+        )}
       </div>
     </nav>
   );
