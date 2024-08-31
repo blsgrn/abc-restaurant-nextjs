@@ -3,7 +3,8 @@ import DashboardLayout from "../components/DashboardLayout";
 import { useState } from "react";
 import Home from "../components/Home";
 import Profile from "../components/Profile";
-import MenuManagement from "../components/MenuManagement";
+import QueryForm from "../components/QueryForm";
+import QueryResponse from "../components/QueryResponse";
 import Settings from "../components/Settings";
 
 const CustomerDashboard = () => {
@@ -15,8 +16,10 @@ const CustomerDashboard = () => {
         return <Home />;
       case "profile":
         return <Profile />;
-      case "menu-management":
-        return <MenuManagement />;
+      case "query-form":
+        return <QueryForm />;
+      case "query-response":
+        return <QueryResponse />;
       case "settings":
         return <Settings />;
       default:

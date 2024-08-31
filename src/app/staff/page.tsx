@@ -4,7 +4,7 @@ import { useState } from "react";
 import Home from "../components/Home";
 import Profile from "../components/Profile";
 import MenuManagement from "../components/MenuManagement";
-import Settings from "../components/Settings";
+import QueryManagement from "../components/QueryManagement";
 
 const StaffDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("home");
@@ -17,8 +17,8 @@ const StaffDashboard = () => {
         return <Profile />;
       case "menu-management":
         return <MenuManagement />;
-      case "settings":
-        return <Settings />;
+      case "query-management":
+        return <QueryManagement />;
       default:
         return <Home />;
     }

@@ -17,10 +17,16 @@ const CustomerSidebar = ({ onMenuItemClick }) => {
             <span>Profile</span>
           </div>
         </li>
-        <li className="mb-4" onClick={() => onMenuItemClick("menu-management")}>
+        <li className="mb-4" onClick={() => onMenuItemClick("query-form")}>
           <div className="flex items-center gap-x-2 cursor-pointer">
             <FaUser size={20} />
-            <span>Menu Management</span>
+            <span>Query Form</span>
+          </div>
+        </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("query-response")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaUser size={20} />
+            <span>Query ResponseForm</span>
           </div>
         </li>
         <li onClick={() => onMenuItemClick("settings")}>

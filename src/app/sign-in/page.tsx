@@ -56,18 +56,17 @@ const SignIn = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { token, role, name } = data;
+        const { token, role, name, id } = data;
 
         localStorage.setItem("token", token);
         localStorage.setItem("role", role);
         localStorage.setItem("name", name);
+        localStorage.setItem("id", id);
 
         console.log(token);
         console.log(role);
         console.log(name);
-
-        localStorage.setItem("token", token);
-        localStorage.setItem("role", role); // Store the role in localStorage
+        console.log(id);
 
         // Redirect based on the user's role
         switch (role) {

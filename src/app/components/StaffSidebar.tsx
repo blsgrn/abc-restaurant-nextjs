@@ -23,10 +23,10 @@ const StaffSidebar = ({ onMenuItemClick }) => {
             <span>Menu Management</span>
           </div>
         </li>
-        <li onClick={() => onMenuItemClick("settings")}>
+        <li onClick={() => onMenuItemClick("query-management")}>
           <div className="flex items-center gap-x-2 cursor-pointer">
             <FaCog size={20} />
-            <span>Settings</span>
+            <span>Query Management</span>
           </div>
         </li>
       </ul>
