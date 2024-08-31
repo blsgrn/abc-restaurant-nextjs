@@ -9,7 +9,7 @@ const SignIn = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    role: "Customer",
+    role: "Customer", // Default role is set to "Customer"
   });
   const [error, setError] = useState("");
 
@@ -163,31 +163,6 @@ const SignIn = () => {
                     <a href="#" className="label-text-alt link link-hover">
                       Forgot password?
                     </a>
-                  </label>
-                </div>
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text">Customer</span>
-                    <input
-                      type="radio"
-                      name="role"
-                      value="Customer"
-                      className="radio checked:bg-red-500"
-                      defaultChecked
-                      onChange={handleChange}
-                    />
-                  </label>
-                </div>
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <span className="label-text">Staff</span>
-                    <input
-                      type="radio"
-                      name="role"
-                      value="Staff"
-                      className="radio checked:bg-blue-500"
-                      onChange={handleChange}
-                    />
                   </label>
                 </div>
                 <div className="form-control mt-6">

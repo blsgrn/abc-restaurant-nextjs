@@ -23,10 +23,25 @@ const AdminSidebar = ({ onMenuItemClick }) => {
             <span>Menu Management</span>
           </div>
         </li>
-        <li onClick={() => onMenuItemClick("settings")}>
+        <li
+          className="mb-4"
+          onClick={() => onMenuItemClick("query-management")}
+        >
           <div className="flex items-center gap-x-2 cursor-pointer">
             <FaCog size={20} />
-            <span>Settings</span>
+            <span>Query Management</span>
+          </div>
+        </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("create-account")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Create Account</span>
+          </div>
+        </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("manage-accounts")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Manage Accounts</span>
           </div>
         </li>
       </ul>
