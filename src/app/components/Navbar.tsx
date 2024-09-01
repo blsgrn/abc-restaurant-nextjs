@@ -8,8 +8,8 @@ import { FaRegUser } from "react-icons/fa";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Menu", href: "/menu" },
   { name: "Services", href: "/services" },
+  { name: "Reservation", href: "/reservation" },
   { name: "About Us", href: "/about-us" },
 ];
 
@@ -34,6 +34,7 @@ const Navbar = () => {
     router.push("/");
   };
 
+  //to direct the user to the appropriate dashboard based on role
   const getDashboardLink = () => {
     switch (role.toLowerCase()) {
       case "customer":
