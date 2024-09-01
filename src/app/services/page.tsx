@@ -39,10 +39,41 @@ const ServicesPage = () => {
     fetchServices();
   }, []);
 
-  // Filter services based on search query
-  const filteredServices = services.filter((service) =>
-    service.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleSearch = async () => {
+    console.log("Search initiated with query:", searchQuery);
+    try {
+      const response = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/hospitalities/search?query=${encodeURIComponent(searchQuery)}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch search results");
+      }
+      const data = await response.json();
+      console.log("Search results:", data);
+      setServices(data); // Update the services state with the search results
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
+  const handleShowAll = async () => {
+    console.log("Show all services initiated");
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/hospitalities`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch all services");
+      }
+      const data = await response.json();
+      console.log("All services:", data);
+      setServices(data); // Update the services state with all services
+    } catch (error) {
+      console.error("Error fetching all services:", error);
+    }
+  };
 
   return (
     <>
@@ -59,13 +90,16 @@ const ServicesPage = () => {
             className="p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           <button
-            onClick={() => {
-              console.log("Search query:", searchQuery);
-              // You can perform other actions here if needed
-            }}
+            onClick={handleSearch} // Make sure handleSearch is called on click
             className="bg-orange-500 text-white font-bold py-2 px-4 rounded-r-lg hover:bg-orange-600 transition duration-300"
           >
             Search
+          </button>
+          <button
+            onClick={handleShowAll} // Add Show All functionality
+            className="ml-2 bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300"
+          >
+            Show All
           </button>
         </div>
         <div className="grid grid-cols-6 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6">
@@ -86,7 +120,7 @@ const ServicesPage = () => {
                 <h2 className="text-xl font-semibold mb-2">{service.name}</h2>
                 <p className="text-gray-700">{service.description}</p>
                 <p className="mt-2 font-bold">${service.price.toFixed(2)}</p>
-                <p className="text-sm text-accent font-semibold">
+                <p className="text-sm text-success font-semibold">
                   {service.category}
                 </p>
               </div>
