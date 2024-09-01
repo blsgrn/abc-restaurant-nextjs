@@ -91,7 +91,7 @@ const ServicesPage = () => {
           />
           <button
             onClick={handleSearch} // Make sure handleSearch is called on click
-            className="bg-orange-500 text-white font-bold py-2 px-4 rounded-r-lg hover:bg-orange-600 transition duration-300"
+            className="ml-0.5 bg-orange-500 text-white font-bold py-2 px-4 rounded-r-lg hover:bg-orange-600 transition duration-300"
           >
             Search
           </button>
