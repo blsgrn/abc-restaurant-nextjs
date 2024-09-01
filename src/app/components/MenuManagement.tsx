@@ -104,14 +104,21 @@ const MenuManagement = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Menu Management</h2>
+    <div className="container mx-auto p-8">
+      <h2 className="text-3xl font-semibold mb-6 text-center text-gray-800">
+        Menu Management
+      </h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-slate-400 flex flex-1 flex-col mb-6"
+        className="bg-info shadow-md rounded-lg p-6 mb-8 "
       >
-        <div>
-          <label htmlFor="name">Name:</label>
+        <div className="mb-4">
+          <label
+            htmlFor="name"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Name:
+          </label>
           <input
             type="text"
             id="name"
@@ -119,20 +126,32 @@ const MenuManagement = () => {
             value={formData.name}
             onChange={handleChange}
             required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <label htmlFor="description">Description:</label>
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Description:
+          </label>
           <textarea
             id="description"
             name="description"
             value={formData.description}
             onChange={handleChange}
             required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
-        <div>
-          <label htmlFor="price">Price:</label>
+        <div className="mb-4">
+          <label
+            htmlFor="price"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Price:
+          </label>
           <input
             type="number"
             id="price"
@@ -140,10 +159,16 @@ const MenuManagement = () => {
             value={formData.price}
             onChange={handleChange}
             required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <label htmlFor="category">Category:</label>
+        <div className="mb-4">
+          <label
+            htmlFor="category"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Category:
+          </label>
           <input
             type="text"
             id="category"
@@ -151,10 +176,16 @@ const MenuManagement = () => {
             value={formData.category}
             onChange={handleChange}
             required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
-          <label htmlFor="imageUrl">Image URL:</label>
+        <div className="mb-4">
+          <label
+            htmlFor="imageUrl"
+            className="block text-gray-700 text-sm font-bold mb-2"
+          >
+            Image URL:
+          </label>
           <input
             type="text"
             id="imageUrl"
@@ -162,42 +193,46 @@ const MenuManagement = () => {
             value={formData.imageUrl}
             onChange={handleChange}
             required
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <button type="submit">
+        <button
+          type="submit"
+          className="w-full bg-info-content text-warning font-bold p-4 rounded-lg hover:bg-gray-600 transition duration-200"
+        >
           {isEditing ? "Update" : "Create"} Menu Item
         </button>
       </form>
 
-      <table className="table-auto w-full">
-        <thead>
+      <table className="table-auto w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead className="bg-gray-200">
           <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Image URL</th>
-            <th>Actions</th>
+            <th className="px-4 py-2 text-left text-gray-600">Name</th>
+            <th className="px-4 py-2 text-left text-gray-600">Description</th>
+            <th className="px-4 py-2 text-left text-gray-600">Price</th>
+            <th className="px-4 py-2 text-left text-gray-600">Category</th>
+            <th className="px-4 py-2 text-left text-gray-600">Image URL</th>
+            <th className="px-4 py-2 text-left text-gray-600">Actions</th>
           </tr>
         </thead>
         <tbody>
           {menuItems.map((item) => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.description}</td>
-              <td>{item.price}</td>
-              <td>{item.category}</td>
-              <td>{item.imageUrl}</td>
-              <td>
+            <tr key={item.id} className="border-t">
+              <td className="px-4 py-2 text-gray-700">{item.name}</td>
+              <td className="px-4 py-2 text-gray-700">{item.description}</td>
+              <td className="px-4 py-2 text-gray-700">{item.price}</td>
+              <td className="px-4 py-2 text-gray-700">{item.category}</td>
+              <td className="px-4 py-2 text-gray-700">{item.imageUrl}</td>
+              <td className="px-4 py-2 flex">
                 <button
                   onClick={() => handleUpdate(item)}
-                  className="text-blue-500 mr-4"
+                  className="text-blue-500 mr-4 hover:text-blue-700 transition duration-200"
                 >
                   Update
                 </button>
                 <button
                   onClick={() => handleDelete(item.id)}
-                  className="text-red-500"
+                  className="text-red-500 hover:text-red-700 transition duration-200"
                 >
                   Delete
                 </button>
