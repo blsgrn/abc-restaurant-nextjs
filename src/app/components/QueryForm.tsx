@@ -1,25 +1,25 @@
 import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
 const QueryForm = () => {
   const [formData, setFormData] = useState({
-    userId: "", // This will be populated from localStorage
+    userId: "",
     query: "",
-    response: "", // Default empty response
-    status: "Open", // Default status
-    date: "", // Will be set to the current date
+    response: "",
+    status: "Open",
+    date: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
 
-  // Use useEffect to load the userId from localStorage when the component mounts
   useEffect(() => {
     const userId = localStorage.getItem("id");
     if (userId) {
       setFormData((prevData) => ({
         ...prevData,
         userId,
-        date: new Date().toISOString(), // Set current date
+        date: new Date().toISOString(),
       }));
     } else {
       setError("User ID is missing. Please log in again.");
@@ -31,6 +31,32 @@ const QueryForm = () => {
   ) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+  };
+
+  const sendEmailNotification = async () => {
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    const templateParams = {
+      customer_name: localStorage.getItem("name"),
+      user_id: formData.userId,
+      query: formData.query,
+      date: new Date().toLocaleString(),
+    };
+
+    try {
+      const result = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+      console.log("Email successfully sent!", result.text);
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setError("Failed to send email notification.");
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -50,13 +76,16 @@ const QueryForm = () => {
       );
 
       if (response.ok) {
+        // Send email notification
+        await sendEmailNotification();
+
         setIsSubmitted(true);
         setFormData({
-          userId: localStorage.getItem("id") || "", // Keep userId, reset query field
+          userId: localStorage.getItem("id") || "",
           query: "",
-          response: "", // Reset response
-          status: "Open", // Reset status
-          date: new Date().toISOString(), // Set current date
+          response: "",
+          status: "Open",
+          date: new Date().toISOString(),
         });
       } else {
         setError("Failed to submit query.");
@@ -68,27 +97,39 @@ const QueryForm = () => {
   };
 
   return (
-    <div className="query-form bg-red-200">
-      <h2>Submit a Query</h2>
+    <div className="query-form bg-info p-6 rounded">
+      <h2 className="text-xl font-bold mb-4">Submit a Query</h2>
       {isSubmitted ? (
-        <p>Thank you! Your query has been submitted.</p>
+        <p className="text-base-100">
+          Thank you! Your query has been submitted.
+        </p>
       ) : (
         <form onSubmit={handleSubmit}>
-          {/* Removed userId input field since it's now automatically populated */}
-          <div>
-            <label htmlFor="query">Query:</label>
+          <div className="mb-4">
+            <label
+              htmlFor="query"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Query:
+            </label>
             <textarea
               id="query"
               name="query"
               value={formData.query}
               onChange={handleChange}
               required
+              className="mt-1 block w-full p-2 border border-gray-300 rounded"
             ></textarea>
           </div>
-          <button type="submit">Submit Query</button>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-info-content text-white rounded hover:bg-blue-600"
+          >
+            Submit Query
+          </button>
         </form>
       )}
-      {error && <p className="error">{error}</p>}
+      {error && <p className="text-red-500 mt-4">{error}</p>}
     </div>
   );
 };
