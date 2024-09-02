@@ -8,8 +8,11 @@ import Footer from "../components/Footer";
 const ReservationForm = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
+    userId: "",
+    userName: "",
     restaurantId: "",
     serviceId: "",
+    serviceCharge: 0, // Initialize serviceCharge
     date: "",
     time: "",
     noOfGuests: 1,
@@ -54,10 +57,36 @@ const ReservationForm = () => {
 
   useEffect(() => {
     const userId = localStorage.getItem("id");
-    if (userId) {
-      setFormData((prevData) => ({ ...prevData, userId }));
+    const userName = localStorage.getItem("name");
+    if (userName) {
+      setFormData((prevData) => ({ ...prevData, userId, userName }));
     }
   }, []);
+
+  useEffect(() => {
+    // Fetch the service price whenever the serviceId or noOfGuests changes
+    if (formData.serviceId && formData.noOfGuests > 0) {
+      const fetchServicePrice = async () => {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/hospitalities/${formData.serviceId}`
+          );
+          const service = await response.json();
+          const servicePrice = service.price || 0;
+          // Update serviceCharge based on fetched price and number of guests
+          const newServiceCharge = servicePrice * formData.noOfGuests;
+          setFormData((prevData) => ({
+            ...prevData,
+            serviceCharge: newServiceCharge,
+          }));
+        } catch (error) {
+          console.error("Error fetching service price:", error);
+        }
+      };
+
+      fetchServicePrice();
+    }
+  }, [formData.serviceId, formData.noOfGuests]);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
@@ -115,6 +144,7 @@ const ReservationForm = () => {
         setFormData({
           restaurantId: "",
           serviceId: "",
+          serviceCharge: 0,
           date: "",
           time: "",
           noOfGuests: 1,
