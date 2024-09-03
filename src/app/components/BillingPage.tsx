@@ -1,6 +1,7 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
+import emailjs from "@emailjs/browser";
 
 const BillingPage = ({ reservationId }) => {
   const [reservation, setReservation] = useState(null);
@@ -35,7 +36,35 @@ const BillingPage = ({ reservationId }) => {
   }, [reservationId]);
 
   const handleSendBill = () => {
-    alert("Bill sent to customer!");
+    if (reservation && payment) {
+      const templateParams = {
+        userName: reservation.userName,
+        serviceCharge: reservation.serviceCharge,
+        specialRequestCharge: reservation.specialRequestCharge,
+        diningPrice: reservation.diningPrice,
+        deliveryPrice: reservation.deliveryPrice,
+        total: payment.amount,
+        user_email: reservation.userEmail,
+      };
+
+      emailjs
+        .send(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID2,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID2,
+          templateParams,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          (result) => {
+            console.log("Email sent successfully:", result.text);
+            alert("Bill sent to customer!");
+          },
+          (error) => {
+            console.error("Error sending email:", error.text);
+            alert("Failed to send the bill to the customer.");
+          }
+        );
+    }
   };
 
   return (

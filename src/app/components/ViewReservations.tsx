@@ -44,7 +44,7 @@ const ViewReservations = () => {
         </thead>
         <tbody>
           {reservations.map((reservation) => (
-            <tr key={reservation._id} className="hover:bg-gray-100">
+            <tr key={reservation.id} className="hover:bg-gray-100">
               <td className="border px-4 py-2">{reservation.userName}</td>
               <td className="border px-4 py-2">{reservation.time}</td>
               <td className="border px-4 py-2">{reservation.noOfGuests}</td>

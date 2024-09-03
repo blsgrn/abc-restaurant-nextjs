@@ -10,6 +10,7 @@ const ReservationForm = () => {
   const [formData, setFormData] = useState({
     userId: "",
     userName: "",
+    userEmail: "",
     restaurantId: "",
     serviceId: "",
     serviceCharge: 0, // Initialize serviceCharge
@@ -58,8 +59,9 @@ const ReservationForm = () => {
   useEffect(() => {
     const userId = localStorage.getItem("id");
     const userName = localStorage.getItem("name");
-    if (userName) {
-      setFormData((prevData) => ({ ...prevData, userId, userName }));
+    const userEmail = localStorage.getItem("email");
+    if (userId) {
+      setFormData((prevData) => ({ ...prevData, userId, userName, userEmail }));
     }
   }, []);
 
