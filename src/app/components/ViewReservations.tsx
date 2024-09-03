@@ -38,7 +38,8 @@ const ViewReservations = () => {
             <th className="border px-4 py-2">Special Requests</th>
             <th className="border px-4 py-2">Type</th>
             <th className="border px-4 py-2">Status</th>
-            <th className="border px-4 py-2">Action</th>
+            <th className="border px-4 py-2">Update</th>
+            <th className="border px-4 py-2">Gnerate Bill</th>
           </tr>
         </thead>
         <tbody>
@@ -59,6 +60,16 @@ const ViewReservations = () => {
                 >
                   Update
                 </Link>
+              </td>
+              <td className="border px-4 py-2">
+                {reservation.status === "Billing" && (
+                  <Link
+                    href={`/billing/${reservation.id}`}
+                    className="text-green-500 hover:underline ml-4"
+                  >
+                    Send&nbsp;Bill
+                  </Link>
+                )}
               </td>
             </tr>
           ))}

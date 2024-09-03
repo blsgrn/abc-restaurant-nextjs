@@ -3,7 +3,6 @@
 "use client";
 
 import React from "react";
-// import UpdateReservation from '../../components/UpdateReservation';
 import UpdateReservation from "../../components/UpdateReservation";
 
 const UpdateReservationPage = ({ params }) => {
