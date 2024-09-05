@@ -1,7 +1,6 @@
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
 import { useState } from "react";
-import Home from "../components/Home";
 import Profile from "../components/Profile";
 import MenuManagement from "../components/MenuManagement";
 import QueryManagement from "../components/QueryManagement";
@@ -15,8 +14,6 @@ const AdminDashboard = () => {
 
   const renderContent = () => {
     switch (activeComponent) {
-      case "home":
-        return <Home />;
       case "profile":
         return <Profile />;
       case "menu-management":
@@ -56,7 +53,7 @@ const AdminDashboard = () => {
           </div>
         );
       default:
-        return <Home />;
+        return <Profile />;
     }
   };
 

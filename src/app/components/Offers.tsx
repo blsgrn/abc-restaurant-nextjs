@@ -26,8 +26,16 @@ const OffersPage = () => {
 
   return (
     <>
-      <div className="container mx-auto p-6 min-h-screen bg-gradient-to-br from-yellow-100 to-orange-200">
-        <h1 className="text-4xl font-bold text-center mb-6">
+      <div
+        className="container mx-auto p-6 min-h-screen "
+        style={{
+          backgroundImage: `url('/food-pics/offer_bg.jpg')`,
+          backgroundSize: "cover", // This ensures the image covers the entire div
+          backgroundPosition: "center", // Center the background image
+          backgroundRepeat: "no-repeat", // Prevent repeating the background image
+        }}
+      >
+        <h1 className="text-4xl font-bold text-center mb-12 text-neutral">
           Exclusive Offers
         </h1>
 
@@ -42,20 +50,21 @@ const OffersPage = () => {
             offers.map((offer) => (
               <div
                 key={offer._id}
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 hover:transform hover:translate-y-[-5px]"
+                style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
               >
-                <h2 className="text-xl font-semibold text-primary mb-2">
+                <h2 className="text-xl font-semibold text-secondary mb-2">
                   {offer.title}
                 </h2>
-                <p className="text-gray-600 mb-4">{offer.description}</p>
+                <p className="text-gray-800 mb-4">{offer.description}</p>
                 <p className="text-lg font-bold text-blue-600 mb-2">
                   {offer.discount}% Discount
                 </p>
-                <p className="text-sm text-gray-500 mb-2">
+                <p className="text-sm text-gray-600 mb-2">
                   <strong>Start Date:</strong>{" "}
                   {new Date(offer.startDate).toLocaleDateString()}
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-600">
                   <strong>End Date:</strong>{" "}
                   {new Date(offer.endDate).toLocaleDateString()}
                 </p>

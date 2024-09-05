@@ -1,7 +1,6 @@
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
 import { useState } from "react";
-import Home from "../components/Home";
 import Profile from "../components/Profile";
 import MenuManagement from "../components/MenuManagement";
 import QueryManagement from "../components/QueryManagement";
@@ -14,22 +13,20 @@ const StaffDashboard = () => {
 
   const renderContent = () => {
     switch (activeComponent) {
-      case "home":
-        return <Home />;
       case "profile":
         return <Profile />;
       case "menu-management":
         return <MenuManagement />;
       case "query-management":
         return <QueryManagement />;
-      case "view-reservations":
+      case "manage-reservations":
         return <ViewReservations />;
       case "manage-gallery":
         return <ManageGallery />;
       case "manage-offers":
         return <OfferForm />;
       default:
-        return <Home />;
+        return <Profile />;
     }
   };
 

@@ -1,29 +1,27 @@
 "use client";
 import DashboardLayout from "../components/DashboardLayout";
 import { useState } from "react";
-import Home from "../components/Home";
 import Profile from "../components/Profile";
 import QueryForm from "../components/QueryForm";
 import QueryResponse from "../components/QueryResponse";
 import Settings from "../components/Settings";
+import ViewReservation from "../components/ViewReservation";
 
 const CustomerDashboard = () => {
-  const [activeComponent, setActiveComponent] = useState("home");
+  const [activeComponent, setActiveComponent] = useState("profile");
 
   const renderContent = () => {
     switch (activeComponent) {
-      case "home":
-        return <Home />;
       case "profile":
         return <Profile />;
       case "query-form":
         return <QueryForm />;
       case "query-response":
         return <QueryResponse />;
-      case "settings":
-        return <Settings />;
+      case "view-reservation":
+        return <ViewReservation />;
       default:
-        return <Home />;
+        return <Profile />;
     }
   };
 
