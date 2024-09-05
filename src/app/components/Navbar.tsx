@@ -31,6 +31,13 @@ const Navbar = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("name");
+    localStorage.removeItem("email");
+
+    // Reset the state to ensure the user is logged out in the UI
+    setName("");
+    setRole("");
+
+    // Redirect to home page
     router.push("/");
   };
 

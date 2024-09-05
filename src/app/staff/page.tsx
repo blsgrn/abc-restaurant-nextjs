@@ -6,6 +6,7 @@ import Profile from "../components/Profile";
 import MenuManagement from "../components/MenuManagement";
 import QueryManagement from "../components/QueryManagement";
 import ViewReservations from "../components/ViewReservations";
+import ManageGallery from "../components/ManageGallery";
 
 const StaffDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("home");
@@ -22,6 +23,8 @@ const StaffDashboard = () => {
         return <QueryManagement />;
       case "view-reservations":
         return <ViewReservations />;
+      case "manage-gallery":
+        return <ManageGallery />;
       default:
         return <Home />;
     }

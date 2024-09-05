@@ -7,6 +7,8 @@ import MenuManagement from "../components/MenuManagement";
 import QueryManagement from "../components/QueryManagement";
 import CreateAccountForm from "../components/CreateAccountForm";
 import ManageAccounts from "../components/ManageAccounts";
+import PaymentReport from "../components/PaymentReport";
+import ReservationReport from "../components/ReservationReport";
 
 const AdminDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("home");
@@ -25,6 +27,34 @@ const AdminDashboard = () => {
         return <CreateAccountForm />;
       case "manage-accounts":
         return <ManageAccounts />;
+      case "payment-report":
+        return <PaymentReport />;
+      case "reservation-report-daily":
+        return (
+          <div>
+            <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+            <h2 className="text-2xl font-semibold mb-4">Daily Reservations</h2>
+            <ReservationReport type="daily" />
+          </div>
+        );
+      case "reservation-report-weekly":
+        return (
+          <div>
+            <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+            <h2 className="text-2xl font-semibold mb-4">Weekly Reservations</h2>
+            <ReservationReport type="weekly" />
+          </div>
+        );
+      case "reservation-report-monthly":
+        return (
+          <div>
+            <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+            <h2 className="text-2xl font-semibold mb-4">
+              Monthly Reservations
+            </h2>
+            <ReservationReport type="monthly" />
+          </div>
+        );
       default:
         return <Home />;
     }
@@ -32,7 +62,7 @@ const AdminDashboard = () => {
 
   return (
     <DashboardLayout onMenuItemClick={setActiveComponent}>
-      <>{renderContent()}</>
+      {renderContent()}
     </DashboardLayout>
   );
 };

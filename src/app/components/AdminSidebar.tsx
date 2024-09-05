@@ -44,6 +44,39 @@ const AdminSidebar = ({ onMenuItemClick }) => {
             <span>Manage Accounts</span>
           </div>
         </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("payment-report")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Payment Report</span>
+          </div>
+        </li>
+        <li
+          className="mb-4"
+          onClick={() => onMenuItemClick("reservation-report-daily")}
+        >
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Reservation Report Daily</span>
+          </div>
+        </li>
+        <li
+          className="mb-4"
+          onClick={() => onMenuItemClick("reservation-report-weekly")}
+        >
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Reservation Report Weekly</span>
+          </div>
+        </li>
+        <li
+          className="mb-4"
+          onClick={() => onMenuItemClick("reservation-report-monthly")}
+        >
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Reservation Report Monthly</span>
+          </div>
+        </li>
       </ul>
     </div>
   );
