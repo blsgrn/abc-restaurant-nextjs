@@ -47,6 +47,12 @@ const StaffSidebar = ({ onMenuItemClick }) => {
             <span>Manage Gallery</span>
           </div>
         </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("manage-offers")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <FaCog size={20} />
+            <span>Manage Offers</span>
+          </div>
+        </li>
       </ul>
     </div>
   );
