@@ -89,7 +89,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="card-body max-w-sm shrink-0 border rounded-lg shadow-2xl shadow-gray-300 border-gray-400 h-4/6 mt-12 justify-center text-center items-center bg-opacity-75 bg-white transform transition-transform duration-300 hover:scale-105 hover:shadow-3xl">
+    <div className="card-body max-w-sm shrink-0 border rounded-lg shadow-2xl shadow-gray-300 border-gray-400 h-4/6 mt-12 justify-center text-center items-center bg-opacity-80 bg-white transform transition-transform duration-100 hover:scale-105 hover:shadow-3xl">
       <h1 className="text-2xl text-neutral-600 font-bold text-center p-2">
         Login Form
       </h1>
