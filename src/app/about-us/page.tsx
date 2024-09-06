@@ -7,7 +7,7 @@ const AboutUs = () => {
     <>
       <Navbar />
       <div className="  p-6 min-h-screen bg-gradient-to-br from-orange-200 to-yellow-100 ">
-        <div className="mx-auto bg-neutral max-w-6xl  p-8 rounded-lg shadow-lg">
+        <div className="mx-auto bg-neutral bg-opacity-80 max-w-6xl  p-8 rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
           {/* Introduction */}

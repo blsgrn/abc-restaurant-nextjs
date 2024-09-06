@@ -94,7 +94,7 @@ const Navbar = () => {
             </div>
           </>
         ) : (
-          <Link href="/sign-in" className="flex items-center gap-x-2">
+          <Link href="/sign-up" className="flex items-center gap-x-2">
             <FaRegUser color="#4d1d95" size={28} alt="User Profile" />
             <span className="font-medium text-neutral-600">Sign in</span>
           </Link>
