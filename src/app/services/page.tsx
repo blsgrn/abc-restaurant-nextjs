@@ -136,21 +136,14 @@ const ServicesPage = () => {
           >
             View Nutritional Information
           </a>
-          <a
-            href="/pdfs/full-menu.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-purple-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-purple-600 transition duration-300 m-2"
-          >
-            View Full Menu
-          </a>
+
           <a
             href="/pdfs/kids-menu.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300 m-2"
           >
-            View Kids Menu
+            View Kids Menu (Special)
           </a>
         </div>
       </div>

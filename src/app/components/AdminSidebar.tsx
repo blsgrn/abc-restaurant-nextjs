@@ -49,29 +49,20 @@ const AdminSidebar = ({ onMenuItemClick }) => {
         </li>
         <li
           className="mb-4"
-          onClick={() => onMenuItemClick("reservation-report-daily")}
+          onClick={() => onMenuItemClick("reservation-summary")}
         >
           <div className="flex items-center gap-x-2 cursor-pointer">
             <BiSolidReport size={20} color={"#fff"} />
-            <span>Reservation Report Daily</span>
+            <span>Reservation Summary</span>
           </div>
         </li>
         <li
           className="mb-4"
-          onClick={() => onMenuItemClick("reservation-report-weekly")}
+          onClick={() => onMenuItemClick("reservation-report")}
         >
           <div className="flex items-center gap-x-2 cursor-pointer">
             <BiSolidReport size={20} color={"#fff"} />
-            <span>Reservation Report Weekly</span>
-          </div>
-        </li>
-        <li
-          className="mb-4"
-          onClick={() => onMenuItemClick("reservation-report-monthly")}
-        >
-          <div className="flex items-center gap-x-2 cursor-pointer">
-            <BiSolidReport size={20} color={"#fff"} />
-            <span>Reservation Report Monthly</span>
+            <span>Reservation Report</span>
           </div>
         </li>
       </ul>
