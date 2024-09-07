@@ -12,6 +12,8 @@ import ReservationSummary from "../components/Reports/ReservationSummary";
 import WeeklyReservationTrendChart from "../components/Reports/WeeklyReservationTrendChart";
 import QueryAnalysisReport from "../components/Reports/QueryAnalysisReport";
 import UserActivity from "../components/Reports/UserActivityReport";
+import PaymentLineChart from "../components/Reports/PaymentLineChart";
+import PaymentPieChart from "../components/Reports/PaymentPieChart";
 
 const AdminDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("home");
@@ -29,7 +31,22 @@ const AdminDashboard = () => {
       case "manage-accounts":
         return <ManageAccounts />;
       case "payment-report":
-        return <PaymentReport />;
+        return (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+            }}
+          >
+            <div style={{ flex: 1, padding: "0 10px" }}>
+              <PaymentLineChart />
+            </div>
+            <div style={{ flex: 1, padding: "0 10px" }}>
+              <PaymentPieChart />
+            </div>
+          </div>
+        );
       case "reservation-report":
         return <ReservationReport />;
       case "reservation-summary":
@@ -38,7 +55,6 @@ const AdminDashboard = () => {
         return <WeeklyReservationTrendChart />;
       case "query-analysis":
         return <QueryAnalysisReport />;
-
       default:
         return <Profile />;
     }
