@@ -1,6 +1,4 @@
-// components/ReservationReport.js
 import { useEffect, useState } from "react";
-import MonthlyWeeklySalesChart from "./MonthlyWeeklyReservationChart";
 
 // Helper functions to filter reservations based on the date range
 const filterDaily = (reservations) => {
@@ -69,7 +67,7 @@ const ReservationReport = () => {
     return <p>{error}</p>;
   }
 
-  // Filter reservations by daily, weekly, and monthly
+  // Filter by daily, weekly, and monthly
   const dailyReservations = filterDaily(reservations);
   const weeklyReservations = filterWeekly(reservations);
   const monthlyReservations = filterMonthly(reservations);
@@ -81,75 +79,94 @@ const ReservationReport = () => {
       </h1>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4"> Reservations made today</h2>
+        <h2 className="text-xl text-green-700 font-semibold mb-4">
+          Reservations made today
+        </h2>
         <ReportTable reservations={dailyReservations} />
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl  text-green-700 font-semibold mb-4">
           Reservations made this week
         </h2>
         <ReportTable reservations={weeklyReservations} />
       </section>
 
       <section>
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-xl  text-green-700 font-semibold mb-4">
           Reservations made this month
         </h2>
         <ReportTable reservations={monthlyReservations} />
       </section>
-      <MonthlyWeeklySalesChart />
     </div>
   );
 };
 
-// Reusable table component to display reservations
 const ReportTable = ({ reservations }) => {
   if (reservations.length === 0) {
     return <p>No reservations found for this period.</p>;
   }
 
   return (
-    <table className="min-w-full table-auto border-collapse border border-gray-200 mb-6">
-      <thead>
-        <tr>
-          <th className="border border-gray-200 px-4 py-2">Reservation ID</th>
-          <th className="border border-gray-200 px-4 py-2">User</th>
-          <th className="border border-gray-200 px-4 py-2">Restaurant</th>
-          <th className="border border-gray-200 px-4 py-2">Date</th>
-          <th className="border border-gray-200 px-4 py-2">Time</th>
-          <th className="border border-gray-200 px-4 py-2">Guests</th>
-          <th className="border border-gray-200 px-4 py-2">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {reservations.map((reservation) => (
-          <tr key={reservation.id}>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.id}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.userName}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.restaurantId}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {new Date(reservation.date).toLocaleDateString()}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.time}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.noOfGuests}
-            </td>
-            <td className="border border-gray-200 px-4 py-2">
-              {reservation.status}
-            </td>
+    <div className="p-6 bg-gray-50 ">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        Reservations
+      </h2>
+      <table className="min-w-full table-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <thead className="bg-gray-800">
+          <tr>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Reservation ID
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              User
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Restaurant
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Date
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Time
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Guests
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Status
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className="divide-y divide-gray-200">
+          {reservations.map((reservation) => (
+            <tr key={reservation.id} className="hover:bg-gray-100">
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.id}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.userName}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.restaurantId}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {new Date(reservation.date).toLocaleDateString()}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.time}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.noOfGuests}
+              </td>
+              <td className="px-4 py-3 text-sm text-gray-600">
+                {reservation.status}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

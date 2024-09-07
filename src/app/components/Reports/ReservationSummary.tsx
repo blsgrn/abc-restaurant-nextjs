@@ -37,44 +37,58 @@ const ReservationSummary = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6 text-center">
+    <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
+      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">
         Reservation Summary Report
       </h1>
-      <table className="min-w-full table-auto border-collapse border border-gray-200">
-        <thead>
+      <table className="min-w-full table-auto bg-white rounded-lg shadow-md overflow-hidden">
+        <thead className="bg-gray-800">
           <tr>
-            <th className="border border-gray-200 px-4 py-2">Reservation ID</th>
-            <th className="border border-gray-200 px-4 py-2">User</th>
-            <th className="border border-gray-200 px-4 py-2">Restaurant</th>
-            <th className="border border-gray-200 px-4 py-2">Date</th>
-            <th className="border border-gray-200 px-4 py-2">Time</th>
-            <th className="border border-gray-200 px-4 py-2">Guests</th>
-            <th className="border border-gray-200 px-4 py-2">Status</th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Reservation ID
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              User
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Restaurant
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Date
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Time
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Guests
+            </th>
+            <th className="px-4 py-3 text-left text-xs font-semibold text-white uppercase tracking-wider">
+              Status
+            </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-200">
           {reservations.map((reservation) => (
-            <tr key={reservation.id}>
-              <td className="border border-gray-200 px-4 py-2">
+            <tr key={reservation.id} className="hover:bg-gray-100">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.id}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.userName}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.restaurantId}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {new Date(reservation.date).toLocaleDateString()}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.time}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.noOfGuests}
               </td>
-              <td className="border border-gray-200 px-4 py-2">
+              <td className="px-4 py-3 text-sm text-gray-600">
                 {reservation.status}
               </td>
             </tr>

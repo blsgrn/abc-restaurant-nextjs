@@ -65,6 +65,21 @@ const AdminSidebar = ({ onMenuItemClick }) => {
             <span>Reservation Report</span>
           </div>
         </li>
+        <li
+          className="mb-4"
+          onClick={() => onMenuItemClick("reservation-chart")}
+        >
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <BiSolidReport size={20} color={"#fff"} />
+            <span>Reservation Chart</span>
+          </div>
+        </li>
+        <li className="mb-4" onClick={() => onMenuItemClick("query-analysis")}>
+          <div className="flex items-center gap-x-2 cursor-pointer">
+            <BiSolidReport size={20} color={"#fff"} />
+            <span>Query Analysis Report</span>
+          </div>
+        </li>
       </ul>
     </div>
   );

@@ -9,8 +9,10 @@ import {
   Title,
   Tooltip,
   Legend,
+  Filler, // Import the Filler plugin
 } from "chart.js";
 
+// Register the components and the Filler plugin
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,16 +20,17 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler
 );
 
-const MonthlyWeeklySalesChart = () => {
+const WeeklyReservationTrendChart = () => {
   const [WeeklyReservation, setWeeklyReservation] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchMonthlySales = async () => {
+    const fetchWeeklyReservations = async () => {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/reservations`
@@ -35,32 +38,32 @@ const MonthlyWeeklySalesChart = () => {
         if (!response.ok) throw new Error("Error fetching reservations");
         const reservations = await response.json();
 
-        // Prepare sales data for the last 28 days grouped by week
-        const reservationData = calculateMonthlyWeeklyReservation(reservations);
+        // Prepare reservation data for the last 28 days grouped by week
+        const reservationData = calculateWeeklyReservation(reservations);
         setWeeklyReservation(reservationData);
       } catch (error) {
-        console.error("Error fetching sales:", error);
-        setError("Failed to load sales data");
+        console.error("Error fetching reservations:", error);
+        setError("Failed to load reservation data");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchMonthlySales();
+    fetchWeeklyReservations();
   }, []);
 
-  // Calculate total sales for each week over the last month (4 weeks)
-  const calculateMonthlyWeeklyReservation = (reservations) => {
+  // Calculate total reservations for each week over the last month (4 weeks)
+  const calculateWeeklyReservation = (reservations) => {
     const today = new Date();
     const lastFourWeeks = new Array(4).fill(0).map((_, i) => {
       const startOfWeek = new Date(today);
       startOfWeek.setDate(today.getDate() - i * 7 - 6); // Start of the week (Monday)
       const endOfWeek = new Date(today);
       endOfWeek.setDate(today.getDate() - i * 7); // End of the week (Sunday)
-      return { startOfWeek, endOfWeek, totalSales: 0 };
+      return { startOfWeek, endOfWeek, totalReservations: 0 };
     });
 
-    // Sum up total sales for each week
+    // Sum up total reservations for each week
     reservations.forEach((reservation) => {
       const reservationDate = new Date(reservation.date);
       lastFourWeeks.forEach((week) => {
@@ -68,11 +71,7 @@ const MonthlyWeeklySalesChart = () => {
           reservationDate >= week.startOfWeek &&
           reservationDate <= week.endOfWeek
         ) {
-          const totalAmount =
-            reservation.type === "Dining"
-              ? reservation.diningPrice
-              : reservation.deliveryPrice;
-          week.totalSales += totalAmount;
+          week.totalReservations += 1; // Count each reservation
         }
       });
     });
@@ -89,7 +88,7 @@ const MonthlyWeeklySalesChart = () => {
     datasets: [
       {
         label: "Total Reservations",
-        data: WeeklyReservation.map((week) => week.totalSales),
+        data: WeeklyReservation.map((week) => week.totalReservations),
         borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
@@ -105,15 +104,15 @@ const MonthlyWeeklySalesChart = () => {
       },
       title: {
         display: true,
-        text: "Weekly Reservatons Trend for the Last Month",
+        text: "Weekly Reservations Trend for the Last Month",
       },
     },
   };
 
-  if (loading) return <p>Loading sales data...</p>;
+  if (loading) return <p>Loading reservation data...</p>;
   if (error) return <p>{error}</p>;
 
   return <Line data={data} options={options} />;
 };
 
-export default MonthlyWeeklySalesChart;
+export default WeeklyReservationTrendChart;
