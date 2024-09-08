@@ -34,19 +34,25 @@ const Gallery = () => {
 
         {error && <p className="text-red-500 text-center mb-6">{error}</p>}
 
-        <div className="grid grid-cols-2 md:grid-cols-1 gap-6">
+        <div className="grid grid-cols-4 md:grid-cols-1 gap-6">
           {galleries.map((gallery) => (
             <div
               key={gallery.id}
               className="border rounded-lg overflow-hidden shadow-lg"
             >
-              <Image
-                src={`http://localhost:9090${gallery.imageUrl}`}
-                alt={gallery.description}
-                width={600}
-                height={600}
-                className="w-full h-64 object-cover"
-              />
+              <a
+                href={`http://localhost:9090${gallery.imageUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={`http://localhost:9090${gallery.imageUrl}`}
+                  alt={gallery.description}
+                  width={600}
+                  height={600}
+                  className="w-full h-64 object-cover"
+                />
+              </a>
               <div className="p-4">
                 <p className="text-gray-800 font-semibold mb-2">
                   {gallery.description}

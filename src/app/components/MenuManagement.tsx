@@ -17,8 +17,45 @@ const MenuManagement = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = () => {
+    const { name, description, price, category, imageUrl } = formData;
+
+    if (!name || !description || !price || !category || !imageUrl) {
+      alert("Please fill out all fields.");
+      return false;
+    }
+
+    if (name.length < 2 || name.length > 100) {
+      alert("Name must be between 2 and 100 characters.");
+      return false;
+    }
+
+    if (description.length < 10 || description.length > 500) {
+      alert("Description must be between 10 and 500 characters.");
+      return false;
+    }
+
+    if (isNaN(price) || parseFloat(price) <= 0) {
+      alert("Price must be a positive number.");
+      return false;
+    }
+
+    const imageUrlPattern = /^\/food-pics\/\w+\.(jpg|jpeg|png|gif)$/;
+    if (!imageUrlPattern.test(imageUrl)) {
+      alert(
+        "Invalid format for Image URL. It should be in the form of /food-pics/foodpic12.jpg."
+      );
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) {
+      return;
+    }
     try {
       const method = isEditing ? "PUT" : "POST";
       const url = isEditing
@@ -35,7 +72,6 @@ const MenuManagement = () => {
 
       if (response.ok) {
         alert(`Menu item ${isEditing ? "updated" : "created"} successfully!`);
-        // Reset form fields and states
         setFormData({
           name: "",
           description: "",
@@ -45,9 +81,13 @@ const MenuManagement = () => {
         });
         setIsEditing(false);
         setEditItemId(null);
-        fetchMenuItems(); // Refresh the list
+        fetchMenuItems();
       } else {
-        alert(`Failed to ${isEditing ? "update" : "create"} menu item.`);
+        alert(
+          `Failed to ${isEditing ? "update" : "create"} menu item. Status: ${
+            response.status
+          }`
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -64,6 +104,7 @@ const MenuManagement = () => {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/hospitalities`
       );
+      if (!response.ok) throw new Error("Network response was not ok");
       const data = await response.json();
       setMenuItems(data);
     } catch (error) {
@@ -72,7 +113,7 @@ const MenuManagement = () => {
   };
 
   const handleDelete = async (id) => {
-    if (confirm("Are you sure you want to delete this menu item?")) {
+    if (window.confirm("Are you sure you want to delete this menu item?")) {
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/hospitalities/${id}`,
@@ -83,9 +124,9 @@ const MenuManagement = () => {
 
         if (response.ok) {
           alert("Menu item deleted successfully!");
-          fetchMenuItems(); // Refresh the list
+          fetchMenuItems();
         } else {
-          alert("Failed to delete menu item.");
+          alert("Failed to delete menu item. Status: " + response.status);
         }
       } catch (error) {
         console.error("Error deleting menu item:", error);
@@ -110,7 +151,7 @@ const MenuManagement = () => {
       </h2>
       <form
         onSubmit={handleSubmit}
-        className="bg-info shadow-md rounded-lg p-6 mb-8 "
+        className="bg-info shadow-md rounded-lg p-6 mb-8"
       >
         <div className="mb-4">
           <label
