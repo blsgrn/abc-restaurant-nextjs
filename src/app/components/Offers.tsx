@@ -49,7 +49,7 @@ const OffersPage = () => {
           ) : (
             offers.map((offer) => (
               <div
-                key={offer._id}
+                key={offer.id}
                 className="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 hover:transform hover:translate-y-[-5px]"
                 style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
               >

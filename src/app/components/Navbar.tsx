@@ -83,7 +83,9 @@ const Navbar = () => {
           <>
             <div className="flex items-center space-x-4 bg-neutral p-2 rounded-lg shadow-sm">
               <Link href={getDashboardLink()}>
-                <span className="font-bold text-success">Welcome, {name}!</span>
+                <span className="font-bold text-yellow-200">
+                  Dashboard: {name}
+                </span>
               </Link>
               <button
                 onClick={handleLogout}

@@ -5,7 +5,7 @@ import Profile from "../components/Profile";
 import QueryForm from "../components/QueryForm";
 import QueryResponse from "../components/QueryResponse";
 import Settings from "../components/Settings";
-import ViewReservation from "../components/ViewReservation";
+import UserReservations from "../components/UserReservations";
 
 const CustomerDashboard = () => {
   const [activeComponent, setActiveComponent] = useState("profile");
@@ -19,7 +19,7 @@ const CustomerDashboard = () => {
       case "query-response":
         return <QueryResponse />;
       case "view-reservation":
-        return <ViewReservation />;
+        return <UserReservations />;
       default:
         return <Profile />;
     }

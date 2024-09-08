@@ -69,6 +69,31 @@ const ManageAccounts = () => {
 
   const handleSaveClick = async () => {
     try {
+      // Fetch the existing user data to avoid overwriting unchanged fields
+      const existingUserResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${editingUserId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!existingUserResponse.ok) {
+        const errorMessage = await existingUserResponse.text();
+        setError(errorMessage || "Failed to fetch the existing user.");
+        return;
+      }
+
+      const existingUserData = await existingUserResponse.json();
+
+      // Merge the existing user data with the new form data
+      const updatedUserData = {
+        ...existingUserData,
+        ...editFormData,
+      };
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/${editingUserId}`,
         {
@@ -76,14 +101,14 @@ const ManageAccounts = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(editFormData),
+          body: JSON.stringify(updatedUserData), // Use the merged data
         }
       );
 
       if (response.ok) {
         setUsers(
           users.map((user) =>
-            user.id === editingUserId ? { ...user, ...editFormData } : user
+            user.id === editingUserId ? { ...user, ...updatedUserData } : user
           )
         );
         setEditingUserId(null);

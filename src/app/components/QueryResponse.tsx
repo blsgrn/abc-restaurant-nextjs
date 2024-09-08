@@ -36,25 +36,27 @@ const QueryResponse = () => {
   }, []);
 
   return (
-    <div>
-      <h2>My Queries</h2>
-      {error && <p className="error">{error}</p>}
-      <table className="table-auto w-full">
+    <div className="container mx-auto p-6">
+      <h2 className="text-2xl font-bold mb-6 text-center">My Queries</h2>
+      {error && <p className="text-red-500">{error}</p>}
+      <table className="table-auto w-full border-collapse">
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Query</th>
-            <th>Status</th>
-            <th>Response</th>
+          <tr className="bg-gray-200">
+            <th className="border px-4 py-2">Date</th>
+            <th className="border px-4 py-2">Query</th>
+            <th className="border px-4 py-2">Status</th>
+            <th className="border px-4 py-2">Response</th>
           </tr>
         </thead>
         <tbody>
           {queries.map((query) => (
-            <tr key={query.id}>
-              <td>{new Date(query.date).toLocaleString()}</td>
-              <td>{query.query}</td>
-              <td>{query.status}</td>
-              <td>{query.response}</td>
+            <tr key={query.id} className="hover:bg-gray-100">
+              <td className="border px-4 py-2">
+                {new Date(query.date).toLocaleString()}
+              </td>
+              <td className="border px-4 py-2">{query.query}</td>
+              <td className="border px-4 py-2">{query.status}</td>
+              <td className="border px-4 py-2">{query.response}</td>
             </tr>
           ))}
         </tbody>

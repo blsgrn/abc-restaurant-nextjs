@@ -66,7 +66,7 @@ const ManageOffers = () => {
           </thead>
           <tbody>
             {offers.map((offer) => (
-              <tr key={offer._id} className="border-t border-gray-200">
+              <tr key={offer.id} className="border-t border-gray-200">
                 <td className="py-2 px-4">{offer.title}</td>
                 <td className="py-2 px-4">{offer.description}</td>
                 <td className="py-2 px-4">{offer.discount}%</td>

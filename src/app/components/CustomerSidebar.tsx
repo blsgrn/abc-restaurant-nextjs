@@ -22,7 +22,7 @@ const CustomerSidebar = ({ onMenuItemClick }) => {
         <li className="mb-4" onClick={() => onMenuItemClick("query-response")}>
           <div className="flex items-center gap-x-2 cursor-pointer">
             <SiGooglebigquery size={20} color="#fff" />
-            <span>Query ResponseForm</span>
+            <span>Query Response</span>
           </div>
         </li>
         <li onClick={() => onMenuItemClick("view-reservation")}>
