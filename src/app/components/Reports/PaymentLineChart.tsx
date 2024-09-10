@@ -26,8 +26,8 @@ const PaymentLineChart = () => {
           {
             label: "Total Payments per Day",
             data: amounts,
-            borderColor: "rgba(75, 192, 192, 1)",
-            backgroundColor: "rgba(75, 192, 192, 0.2)",
+            borderColor: "rgba(0, 102, 102, 1)", // Darker teal
+            backgroundColor: "rgba(0, 102, 102, 0.2)", // Darker teal with transparency
             fill: true,
           },
         ],

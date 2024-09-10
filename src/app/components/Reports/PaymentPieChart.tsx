@@ -26,20 +26,20 @@ const PaymentPieChart = () => {
             label: "Payment Status Breakdown",
             data: counts,
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
+              "rgba(153, 0, 0, 0.8)", // Darker red
+              "rgba(0, 51, 102, 0.8)", // Darker blue
+              "rgba(204, 153, 0, 0.8)", // Darker yellow
+              "rgba(0, 102, 102, 0.8)", // Darker teal
+              "rgba(102, 0, 204, 0.8)", // Darker purple
+              "rgba(204, 102, 0, 0.8)", // Darker orange
             ],
             borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
+              "rgba(153, 0, 0, 1)", // Darker red
+              "rgba(0, 51, 102, 1)", // Darker blue
+              "rgba(204, 153, 0, 1)", // Darker yellow
+              "rgba(0, 102, 102, 1)", // Darker teal
+              "rgba(102, 0, 204, 1)", // Darker purple
+              "rgba(204, 102, 0, 1)", // Darker orange
             ],
             borderWidth: 1,
           },

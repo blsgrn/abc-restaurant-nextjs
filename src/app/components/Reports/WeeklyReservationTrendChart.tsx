@@ -79,7 +79,7 @@ const WeeklyReservationTrendChart = () => {
     return lastFourWeeks.reverse(); // reverse to show oldest week first
   };
 
-  // Chart data
+  // Chart data with darker colors
   const data = {
     labels: WeeklyReservation.map(
       (week) =>
@@ -89,8 +89,8 @@ const WeeklyReservationTrendChart = () => {
       {
         label: "Total Reservations",
         data: WeeklyReservation.map((week) => week.totalReservations),
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "rgba(0, 123, 255, 1)", // Darker blue for the line
+        backgroundColor: "rgba(0, 123, 255, 0.5)", // Darker blue with opacity for the fill
         fill: true,
       },
     ],
@@ -101,10 +101,30 @@ const WeeklyReservationTrendChart = () => {
     plugins: {
       legend: {
         position: "top",
+        labels: {
+          color: "#343a40", // Darker text for the legend
+        },
       },
       title: {
         display: true,
         text: "Weekly Reservations Trend for the Last Month",
+        color: "#343a40",
+      },
+      tooltip: {
+        bodyColor: "#343a40",
+        titleColor: "#343a40", // Darker title in tooltips
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          color: "#343a40", // Darker text for the X-axis labels
+        },
+      },
+      y: {
+        ticks: {
+          color: "#343a40", // Darker text for the Y-axis labels
+        },
       },
     },
   };
