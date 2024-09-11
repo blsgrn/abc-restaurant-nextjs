@@ -12,8 +12,8 @@ const DashboardLayout = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const pathname = usePathname(); // Get the current path
-  const role = pathname.split("/")[1]; // Extract role from the URL
+  const pathname = usePathname();
+  const role = pathname.split("/")[1];
 
   const renderSidebar = () => {
     switch (role) {
@@ -24,7 +24,7 @@ const DashboardLayout = ({
       case "admin":
         return <AdminSidebar onMenuItemClick={onMenuItemClick} />;
       default:
-        return null; // Handle cases where the role is not recognized
+        return null;
     }
   };
 

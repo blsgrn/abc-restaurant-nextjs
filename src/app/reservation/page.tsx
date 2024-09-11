@@ -13,7 +13,7 @@ const ReservationForm = () => {
     userEmail: "",
     restaurantId: "",
     serviceId: "",
-    serviceCharge: 0, // Initialize serviceCharge
+    serviceCharge: 0,
     date: "",
     time: "",
     noOfGuests: 1,
@@ -66,7 +66,6 @@ const ReservationForm = () => {
   }, []);
 
   useEffect(() => {
-    // Fetch the service price whenever the serviceId or noOfGuests changes
     if (formData.serviceId && formData.noOfGuests > 0) {
       const fetchServicePrice = async () => {
         try {
@@ -75,7 +74,7 @@ const ReservationForm = () => {
           );
           const service = await response.json();
           const servicePrice = service.price || 0;
-          // Update serviceCharge based on fetched price and number of guests
+
           const newServiceCharge = servicePrice * formData.noOfGuests;
           setFormData((prevData) => ({
             ...prevData,
@@ -117,8 +116,7 @@ const ReservationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if user is logged in
-    const loggedInUser = localStorage.getItem("name"); // Adjust key if needed
+    const loggedInUser = localStorage.getItem("name");
 
     if (!loggedInUser) {
       alert("Please sign in to create a reservation.");
@@ -271,7 +269,6 @@ const ReservationForm = () => {
               </div>
             </div>
 
-            {/* Special Requests */}
             <div className="form-control mt-4">
               <label className="label">
                 <span className="label-text">Special Requests</span>
@@ -284,7 +281,6 @@ const ReservationForm = () => {
               />
             </div>
 
-            {/* Reservation Type Selection */}
             <div className="form-control mt-4">
               <label className="label">
                 <span className="label-text">Reservation Type</span>

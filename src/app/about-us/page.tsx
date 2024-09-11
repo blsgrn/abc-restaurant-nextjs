@@ -10,7 +10,6 @@ const AboutUs = () => {
         <div className="mx-auto bg-neutral bg-opacity-80 max-w-6xl  p-8 rounded-lg shadow-lg">
           <h1 className="text-4xl font-bold text-primary mb-6">About Us</h1>
 
-          {/* Introduction */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-secondary mb-4">
               Welcome to ABC Restaurant
@@ -25,7 +24,6 @@ const AboutUs = () => {
             </p>
           </section>
 
-          {/* History & Founding */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-secondary mb-4">
               Our Journey
@@ -40,14 +38,12 @@ const AboutUs = () => {
             </p>
           </section>
 
-          {/* Locations */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-secondary mb-4">
               Our Locations
             </h2>
-            {/* Flexbox container for side-by-side layout */}
+
             <div className="flex md:flex-row gap-6">
-              {/* Kandy Location */}
               <div className="flex-1 bg-neutral-200 p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
                   Kandy
@@ -67,7 +63,6 @@ const AboutUs = () => {
                 </p>
               </div>
 
-              {/* Colombo Location */}
               <div className="flex-1 bg-neutral-200 p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-semibold text-gray-800 mb-4">
                   Colombo
@@ -89,7 +84,6 @@ const AboutUs = () => {
             </div>
           </section>
 
-          {/* Cuisine and Menu Philosophy */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-secondary mb-4">
               Our Culinary Philosophy
@@ -103,7 +97,6 @@ const AboutUs = () => {
             </p>
           </section>
 
-          {/* Core Values & Mission */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-secondary mb-4">
               Our Mission & Values
@@ -117,7 +110,6 @@ const AboutUs = () => {
             </p>
           </section>
 
-          {/* Call to Action */}
           <section className="text-center mt-12">
             <h2 className="text-xl font-bold text-secondary mb-4">
               Ready to Experience ABC Restaurant?
@@ -130,7 +122,6 @@ const AboutUs = () => {
             </p>
             <div className="flex justify-center gap-4">
               {" "}
-              {/* Added gap-4 for spacing */}
               <a
                 href="/reservation"
                 className="inline-block px-6 py-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600"

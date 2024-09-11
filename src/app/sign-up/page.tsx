@@ -32,7 +32,6 @@ const SignUp = () => {
     }
   };
 
-  // validation tests
   const validateForm = () => {
     const { username, password, name, email, contactNumber } = formData;
 

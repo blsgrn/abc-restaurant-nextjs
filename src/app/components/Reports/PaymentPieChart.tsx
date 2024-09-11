@@ -16,8 +16,8 @@ const PaymentPieChart = () => {
       const data = await response.json();
       console.log(data);
 
-      const labels = data.map((item) => item._id); // Status values
-      const counts = data.map((item) => item.count); // Counts
+      const labels = data.map((item) => item._id);
+      const counts = data.map((item) => item.count);
 
       setChartData({
         labels: labels,
@@ -26,20 +26,20 @@ const PaymentPieChart = () => {
             label: "Payment Status Breakdown",
             data: counts,
             backgroundColor: [
-              "rgba(153, 0, 0, 0.8)", // Darker red
-              "rgba(0, 51, 102, 0.8)", // Darker blue
-              "rgba(204, 153, 0, 0.8)", // Darker yellow
-              "rgba(0, 102, 102, 0.8)", // Darker teal
-              "rgba(102, 0, 204, 0.8)", // Darker purple
-              "rgba(204, 102, 0, 0.8)", // Darker orange
+              "rgba(153, 0, 0, 0.8)",
+              "rgba(0, 51, 102, 0.8)",
+              "rgba(204, 153, 0, 0.8)",
+              "rgba(0, 102, 102, 0.8)",
+              "rgba(102, 0, 204, 0.8)",
+              "rgba(204, 102, 0, 0.8)",
             ],
             borderColor: [
-              "rgba(153, 0, 0, 1)", // Darker red
-              "rgba(0, 51, 102, 1)", // Darker blue
-              "rgba(204, 153, 0, 1)", // Darker yellow
-              "rgba(0, 102, 102, 1)", // Darker teal
-              "rgba(102, 0, 204, 1)", // Darker purple
-              "rgba(204, 102, 0, 1)", // Darker orange
+              "rgba(153, 0, 0, 1)",
+              "rgba(0, 51, 102, 1)",
+              "rgba(204, 153, 0, 1)",
+              "rgba(0, 102, 102, 1)",
+              "rgba(102, 0, 204, 1)",
+              "rgba(204, 102, 0, 1)",
             ],
             borderWidth: 1,
           },

@@ -18,7 +18,7 @@ const QueryAnalysisReport = () => {
         if (!response.ok) throw new Error("Error fetching query analysis data");
         const data = await response.json();
         setQueryStats(data);
-        console.log("Fetched data:", data); // Log the fetched data
+        console.log("Fetched data:", data);
       } catch (error) {
         console.error("Error fetching query analysis data:", error);
         setError("Error fetching query analysis data");
@@ -34,7 +34,6 @@ const QueryAnalysisReport = () => {
   if (error) return <div className="text-red-500">{error}</div>;
   if (!queryStats) return <div>No data available</div>;
 
-  // Prepare data for Pie chart
   const statusLabels = queryStats.statusBreakdown.map((status) => status.label);
   const statusValues = queryStats.statusBreakdown.map((status) => status.value);
 
@@ -54,7 +53,6 @@ const QueryAnalysisReport = () => {
         Query Analysis Report
       </h1>
 
-      {/* Statistics Summary */}
       <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-4 rounded-lg shadow-md text-center">
           <h2 className="text-2xl font-semibold text-gray-800">
@@ -85,7 +83,6 @@ const QueryAnalysisReport = () => {
         </div>
       </div>
 
-      {/* Query Status Breakdown - Pie Chart Example */}
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Query Status Breakdown
       </h2>
@@ -93,7 +90,6 @@ const QueryAnalysisReport = () => {
         <Pie data={pieData} />
       </div>
 
-      {/* Query List */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Recent Queries
@@ -112,7 +108,7 @@ const QueryAnalysisReport = () => {
             {queryStats.recentQueries.map((query) => (
               <tr key={query.id} className="hover:bg-gray-100">
                 <td className="px-4 py-3 text-sm text-gray-600">
-                  {query.userId} {/* Adjust to userName if available */}
+                  {query.userId}
                 </td>
                 <td className="px-4 py-3 text-sm text-gray-600">
                   {query.query}

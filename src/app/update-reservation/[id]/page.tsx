@@ -1,5 +1,3 @@
-// app/update-reservation/[id]/page.js
-
 "use client";
 
 import React from "react";

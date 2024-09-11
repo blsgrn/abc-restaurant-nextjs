@@ -9,10 +9,9 @@ import {
   Title,
   Tooltip,
   Legend,
-  Filler, // Import the Filler plugin
+  Filler,
 } from "chart.js";
 
-// Register the components and the Filler plugin
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -38,7 +37,6 @@ const WeeklyReservationTrendChart = () => {
         if (!response.ok) throw new Error("Error fetching reservations");
         const reservations = await response.json();
 
-        // Prepare reservation data for the last 28 days grouped by week
         const reservationData = calculateWeeklyReservation(reservations);
         setWeeklyReservation(reservationData);
       } catch (error) {
@@ -52,18 +50,16 @@ const WeeklyReservationTrendChart = () => {
     fetchWeeklyReservations();
   }, []);
 
-  // Calculate total reservations for each week over the last month (4 weeks)
   const calculateWeeklyReservation = (reservations) => {
     const today = new Date();
     const lastFourWeeks = new Array(4).fill(0).map((_, i) => {
       const startOfWeek = new Date(today);
-      startOfWeek.setDate(today.getDate() - i * 7 - 6); // Start of the week (Monday)
+      startOfWeek.setDate(today.getDate() - i * 7 - 6);
       const endOfWeek = new Date(today);
-      endOfWeek.setDate(today.getDate() - i * 7); // End of the week (Sunday)
+      endOfWeek.setDate(today.getDate() - i * 7);
       return { startOfWeek, endOfWeek, totalReservations: 0 };
     });
 
-    // Sum up total reservations for each week
     reservations.forEach((reservation) => {
       const reservationDate = new Date(reservation.date);
       lastFourWeeks.forEach((week) => {
@@ -71,15 +67,14 @@ const WeeklyReservationTrendChart = () => {
           reservationDate >= week.startOfWeek &&
           reservationDate <= week.endOfWeek
         ) {
-          week.totalReservations += 1; // Count each reservation
+          week.totalReservations += 1;
         }
       });
     });
 
-    return lastFourWeeks.reverse(); // reverse to show oldest week first
+    return lastFourWeeks.reverse();
   };
 
-  // Chart data with darker colors
   const data = {
     labels: WeeklyReservation.map(
       (week) =>
@@ -89,8 +84,8 @@ const WeeklyReservationTrendChart = () => {
       {
         label: "Total Reservations",
         data: WeeklyReservation.map((week) => week.totalReservations),
-        borderColor: "rgba(0, 123, 255, 1)", // Darker blue for the line
-        backgroundColor: "rgba(0, 123, 255, 0.5)", // Darker blue with opacity for the fill
+        borderColor: "rgba(0, 123, 255, 1)",
+        backgroundColor: "rgba(0, 123, 255, 0.5)",
         fill: true,
       },
     ],
@@ -102,7 +97,7 @@ const WeeklyReservationTrendChart = () => {
       legend: {
         position: "top",
         labels: {
-          color: "#343a40", // Darker text for the legend
+          color: "#343a40",
         },
       },
       title: {
@@ -112,18 +107,18 @@ const WeeklyReservationTrendChart = () => {
       },
       tooltip: {
         bodyColor: "#343a40",
-        titleColor: "#343a40", // Darker title in tooltips
+        titleColor: "#343a40",
       },
     },
     scales: {
       x: {
         ticks: {
-          color: "#343a40", // Darker text for the X-axis labels
+          color: "#343a40",
         },
       },
       y: {
         ticks: {
-          color: "#343a40", // Darker text for the Y-axis labels
+          color: "#343a40",
         },
       },
     },

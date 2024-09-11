@@ -8,7 +8,7 @@ const CreateAccountForm = () => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
-    role: "", // This will store the selected role (Admin/Staff)
+    role: "",
     name: "",
     email: "",
     contactNumber: "",
@@ -30,7 +30,6 @@ const CreateAccountForm = () => {
     }
   };
 
-  // validation tests
   const validateForm = () => {
     const { username, password, name, email, contactNumber } = formData;
 
@@ -94,7 +93,7 @@ const CreateAccountForm = () => {
 
       if (response.ok) {
         alert("Registration successful!");
-        // Clear the form fields after successful registration
+
         setFormData({
           username: "",
           password: "",

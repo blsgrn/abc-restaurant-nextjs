@@ -33,15 +33,12 @@ const Navbar = () => {
     localStorage.removeItem("name");
     localStorage.removeItem("email");
 
-    // Reset the state to ensure the user is logged out in the UI
     setName("");
     setRole("");
 
-    // Redirect to home page
     router.push("/");
   };
 
-  //to direct the user to the appropriate dashboard based on role
   const getDashboardLink = () => {
     switch (role.toLowerCase()) {
       case "customer":

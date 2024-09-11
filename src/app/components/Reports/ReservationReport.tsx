@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-// Helper functions to filter reservations based on the date range
 const filterDaily = (reservations) => {
   const today = new Date();
   return reservations.filter((reservation) => {
@@ -67,7 +66,6 @@ const ReservationReport = () => {
     return <p>{error}</p>;
   }
 
-  // Filter by daily, weekly, and monthly
   const dailyReservations = filterDaily(reservations);
   const weeklyReservations = filterWeekly(reservations);
   const monthlyReservations = filterMonthly(reservations);

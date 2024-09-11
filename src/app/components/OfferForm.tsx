@@ -12,13 +12,11 @@ const OfferForm = () => {
   });
   const [message, setMessage] = useState("");
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setOffer({ ...offer, [name]: value });
   };
 
-  // Submit form to create a new offer
   const handleSubmit = async (e) => {
     e.preventDefault();
 

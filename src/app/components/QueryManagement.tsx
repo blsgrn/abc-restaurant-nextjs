@@ -6,7 +6,6 @@ const QueryManagement = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    // Fetch all queries
     const fetchQueries = async () => {
       try {
         const response = await fetch(
@@ -17,7 +16,6 @@ const QueryManagement = () => {
           const data = await response.json();
           console.log("Fetched queries:", data);
 
-          // Fetch user details for each query
           const queriesWithUserNames = await Promise.all(
             data.map(async (query) => {
               try {
@@ -52,18 +50,14 @@ const QueryManagement = () => {
     fetchQueries();
   }, []);
 
-  // Handle response input change
   const handleResponseChange = (queryId, value) => {
     setResponses({ ...responses, [queryId]: value });
   };
 
-  // Handle submit response
   const handleResponseSubmit = async (queryId) => {
     try {
-      // Find the query being updated
       const queryToUpdate = queries.find((query) => query.id === queryId);
 
-      // Ensure the full query object is being sent in the PUT request
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/queries/${queryId}`,
         {
@@ -72,10 +66,10 @@ const QueryManagement = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            ...queryToUpdate, // Include all original fields
-            response: responses[queryId], // Update response
-            status: "Closed", // Update status to "Closed"
-            responseDate: new Date().toISOString(), // Set response date to current date
+            ...queryToUpdate,
+            response: responses[queryId],
+            status: "Closed",
+            responseDate: new Date().toISOString(),
           }),
         }
       );

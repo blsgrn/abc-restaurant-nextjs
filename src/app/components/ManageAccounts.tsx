@@ -69,7 +69,6 @@ const ManageAccounts = () => {
 
   const handleSaveClick = async () => {
     try {
-      // Fetch the existing user data to avoid overwriting unchanged fields
       const existingUserResponse = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/${editingUserId}`,
         {
@@ -88,7 +87,6 @@ const ManageAccounts = () => {
 
       const existingUserData = await existingUserResponse.json();
 
-      // Merge the existing user data with the new form data
       const updatedUserData = {
         ...existingUserData,
         ...editFormData,
@@ -101,7 +99,7 @@ const ManageAccounts = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(updatedUserData), // Use the merged data
+          body: JSON.stringify(updatedUserData),
         }
       );
 

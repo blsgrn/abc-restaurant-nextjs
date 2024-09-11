@@ -1,6 +1,6 @@
 import { Line } from "react-chartjs-2";
 import { useEffect, useState } from "react";
-import Chart from "chart.js/auto"; // Import Chart.js
+import Chart from "chart.js/auto";
 
 const PaymentLineChart = () => {
   const [chartData, setChartData] = useState({
@@ -16,7 +16,6 @@ const PaymentLineChart = () => {
       const data = await response.json();
       console.log(data);
 
-      // Update: Now accessing 'date' instead of '_id'
       const labels = data.map((item) => item._id);
       const amounts = data.map((item) => item.totalAmount);
 
@@ -26,8 +25,8 @@ const PaymentLineChart = () => {
           {
             label: "Total Payments per Day",
             data: amounts,
-            borderColor: "rgba(0, 102, 102, 1)", // Darker teal
-            backgroundColor: "rgba(0, 102, 102, 0.2)", // Darker teal with transparency
+            borderColor: "rgba(0, 102, 102, 1)",
+            backgroundColor: "rgba(0, 102, 102, 0.2)",
             fill: true,
           },
         ],

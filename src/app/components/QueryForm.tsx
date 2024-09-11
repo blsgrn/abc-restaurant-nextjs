@@ -76,7 +76,6 @@ const QueryForm = () => {
       );
 
       if (response.ok) {
-        // Send email notification
         await sendEmailNotification();
 
         setIsSubmitted(true);

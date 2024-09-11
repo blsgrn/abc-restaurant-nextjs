@@ -7,10 +7,9 @@ const UserReservations = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // Fetch the user's reservations based on user ID from localStorage
   useEffect(() => {
     const fetchUserReservations = async () => {
-      const userId = localStorage.getItem("id"); // Assumes userId is stored in localStorage
+      const userId = localStorage.getItem("id");
       if (!userId) {
         setError("No user found");
         setLoading(false);

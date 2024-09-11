@@ -1,4 +1,3 @@
-// components/ReservationSummary.js
 import { useEffect, useState } from "react";
 
 const ReservationSummary = () => {
@@ -9,7 +8,6 @@ const ReservationSummary = () => {
   useEffect(() => {
     const fetchAllReservations = async () => {
       try {
-        // Fetch the reservations from the API using the correct endpoint
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/reservations`
         );
@@ -26,7 +24,7 @@ const ReservationSummary = () => {
     };
 
     fetchAllReservations();
-  }, []); // Runs once when the component mounts
+  }, []);
 
   if (loading) {
     return <p>Loading reservations...</p>;

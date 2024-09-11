@@ -7,7 +7,6 @@ const QueryResponse = () => {
   useEffect(() => {
     const fetchUserQueries = async () => {
       try {
-        // Get the userId from localStorage
         const userId = localStorage.getItem("id");
 
         if (!userId) {
@@ -15,7 +14,6 @@ const QueryResponse = () => {
           return;
         }
 
-        // Fetch queries submitted by this user
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/queries?userId=${userId}`
         );

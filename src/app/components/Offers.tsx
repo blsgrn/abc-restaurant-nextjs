@@ -5,7 +5,6 @@ const OffersPage = () => {
   const [offers, setOffers] = useState([]);
   const [error, setError] = useState("");
 
-  // Fetch all offers on component mount
   useEffect(() => {
     fetchOffers();
   }, []);
@@ -30,9 +29,9 @@ const OffersPage = () => {
         className="container mx-auto p-6 min-h-screen "
         style={{
           backgroundImage: `url('/food-pics/offer_bg.jpg')`,
-          backgroundSize: "cover", // This ensures the image covers the entire div
-          backgroundPosition: "center", // Center the background image
-          backgroundRepeat: "no-repeat", // Prevent repeating the background image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <h1 className="text-4xl font-bold text-center mb-12 text-neutral">

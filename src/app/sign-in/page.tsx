@@ -70,7 +70,6 @@ const SignIn = () => {
         console.log(id);
         console.log(email);
 
-        // Redirect based on the user's role
         switch (role) {
           case "Customer":
             router.push("/customer");

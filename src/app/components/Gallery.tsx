@@ -6,7 +6,6 @@ const Gallery = () => {
   const [galleries, setGalleries] = useState([]);
   const [error, setError] = useState("");
 
-  // Fetch all galleries
   useEffect(() => {
     fetchGalleries();
   }, []);

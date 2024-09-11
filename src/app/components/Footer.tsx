@@ -13,7 +13,6 @@ const Footer = () => {
   return (
     <footer className="bg-violet-900 text-neutral-200 py-8 h-fit">
       <div className="container mx-auto flex flex-row md:flex-col justify-around items-center">
-        {/* Logo and Description */}
         <div className="flex flex-col items-center">
           <Image
             src="/logo.svg"
@@ -28,7 +27,6 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Navigation Links */}
         <div className="mt-0 md:mt-6 flex flex-row md:flex-col gap-y-4 gap-x-16 ">
           <div className="flex flex-col items-start md:items-center sm:hidden">
             <h5 className="font-semibold mb-2">Quick Links</h5>
@@ -50,7 +48,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Media Icons */}
         <div className="mt-6 p-2 flex justify-end md:justify-center gap-x-6">
           <Link
             href="https://www.facebook.com"

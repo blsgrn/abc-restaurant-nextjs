@@ -3,17 +3,16 @@ import Image from "next/image";
 
 const ManageGallery = () => {
   const [galleries, setGalleries] = useState([]);
-  const [imageFile, setImageFile] = useState(null); // For file upload
+  const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState("");
   const [restaurantId, setRestaurantId] = useState("");
-  const [restaurants, setRestaurants] = useState([]); // For dropdown list
+  const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Fetch all galleries
   useEffect(() => {
     fetchGalleries();
-    fetchRestaurants(); // Fetch restaurants for dropdown
+    fetchRestaurants();
   }, []);
 
   const fetchGalleries = async () => {
@@ -35,7 +34,7 @@ const ManageGallery = () => {
   const fetchRestaurants = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/restaurants` // Adjust endpoint as needed
+        `${process.env.NEXT_PUBLIC_API_URL}/restaurants`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch restaurants.");
@@ -60,11 +59,11 @@ const ManageGallery = () => {
     const formData = new FormData();
     formData.append("restaurantId", restaurantId);
     formData.append("description", description);
-    formData.append("file", imageFile); // Append file
+    formData.append("file", imageFile);
 
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/galleries/upload`, // Assuming this is the upload endpoint
+        `${process.env.NEXT_PUBLIC_API_URL}/galleries/upload`,
         {
           method: "POST",
           body: formData,
@@ -73,7 +72,7 @@ const ManageGallery = () => {
       if (!response.ok) {
         throw new Error("Failed to upload gallery.");
       }
-      await fetchGalleries(); // Refresh the list
+      await fetchGalleries();
       setImageFile(null);
       setDescription("");
       setRestaurantId("");
@@ -96,7 +95,7 @@ const ManageGallery = () => {
       if (!response.ok) {
         throw new Error("Failed to delete gallery.");
       }
-      await fetchGalleries(); // Refresh the list after deletion
+      await fetchGalleries();
     } catch (error) {
       console.error("Error deleting gallery:", error);
       setError("Failed to delete gallery.");

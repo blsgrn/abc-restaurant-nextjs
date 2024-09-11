@@ -52,7 +52,7 @@ const ServicesPage = () => {
       }
       const data = await response.json();
       console.log("Search results:", data);
-      setServices(data); // Update the services state with the search results
+      setServices(data);
     } catch (error) {
       console.error("Error fetching search results:", error);
     }
@@ -69,7 +69,7 @@ const ServicesPage = () => {
       }
       const data = await response.json();
       console.log("All services:", data);
-      setServices(data); // Update the services state with all services
+      setServices(data);
     } catch (error) {
       console.error("Error fetching all services:", error);
     }
@@ -90,13 +90,13 @@ const ServicesPage = () => {
             className="p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
           />
           <button
-            onClick={handleSearch} // Make sure handleSearch is called on click
+            onClick={handleSearch}
             className="ml-0.5 bg-orange-500 text-white font-bold py-2 px-4 rounded-r-lg hover:bg-orange-600 transition duration-300"
           >
             Search
           </button>
           <button
-            onClick={handleShowAll} // Add Show All functionality
+            onClick={handleShowAll}
             className="ml-2 bg-gray-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300"
           >
             Show All

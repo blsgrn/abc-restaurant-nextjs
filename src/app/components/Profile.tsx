@@ -9,7 +9,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-      const userId = localStorage.getItem("id"); // Fetch the user ID from localStorage
+      const userId = localStorage.getItem("id");
       if (!userId) {
         setError("No user ID found in local storage.");
         setLoading(false);
@@ -23,7 +23,7 @@ const UserProfile = () => {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`, // Include JWT if required
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }
         );

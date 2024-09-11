@@ -54,7 +54,7 @@ const UpdateReservation = ({ id }) => {
           },
           body: JSON.stringify({
             ...reservation,
-            status: "Billing", // Set status to "Billing"
+            status: "Billing",
           }),
         }
       );

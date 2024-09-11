@@ -5,7 +5,6 @@ const ManageOffers = () => {
   const [offers, setOffers] = useState([]);
   const [message, setMessage] = useState("");
 
-  // Fetch offers from API
   useEffect(() => {
     const fetchOffers = async () => {
       try {
@@ -26,7 +25,6 @@ const ManageOffers = () => {
     fetchOffers();
   }, []);
 
-  // Function to handle deleting an offer
   const handleDelete = async (id) => {
     try {
       const response = await fetch(
